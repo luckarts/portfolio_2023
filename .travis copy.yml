@@ -1,0 +1,25 @@
+sudo: false
+language: node_js
+
+services:
+  - mysql
+node_js:
+  - 13.14.0
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+before_install:
+  - mysql -e 'CREATE DATABASE test'
+install:
+  - npm ci
+  - npm install sharp
+before_script:
+  - npm install -g sequelize-cli
+  - sequelize db:migrate
+script:
+  - npm run test
+
+notification: email:false

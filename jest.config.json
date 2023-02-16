@@ -1,0 +1,5 @@
+{
+  "roots": ["<rootDir>/server"],
+  "testPathIgnorePatterns": ["/node_modules/", "/public/"],
+  "testRegex": "((\\.|/*.)(test))\\.js?$"
+}

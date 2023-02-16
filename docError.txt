@@ -1,0 +1,19 @@
+200 OK: La requête a réussi et a renvoyé du contenu.
+
+201 Created: La requête a réussi et a créé un nouveau ressource.
+
+204 No Content: La requête a réussi, mais il n'y a pas de contenu à renvoyer.
+
+400 Bad Request: La requête est mal formée ou incomplète.
+
+401 Unauthorized: L'utilisateur n'est pas autorisé à accéder à la ressource.
+
+403 Forbidden: L'accès à la ressource est refusé.
+
+404 Not Found: La ressource n'a pas été trouvée.
+
+409 Conflict: Une erreur de conflit s'est produite lors de la mise à jour de la ressource.
+
+422 Unprocessable Entity: Les données soumises sont incorrectes ou incomplètes.
+
+500 Internal Server Error: Une erreur interne s'est produite sur le serveur.
