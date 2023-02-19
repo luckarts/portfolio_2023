@@ -1,5 +1,4 @@
 const tailwindcss = require('tailwindcss');
-const join = require('path').join;
 
 const tailwindJS = require('./tailwind.config.js');
 const purgecss = require('@fullhuman/postcss-purgecss')({
@@ -14,7 +13,7 @@ module.exports = {
     require('postcss-nested')({
       bubble: ['screen']
     }),
-    require('tailwindcss')(tailwindJS),
+    tailwindcss(tailwindJS),
     require('autoprefixer')
   ]
 };

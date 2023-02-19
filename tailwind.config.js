@@ -1,8 +1,11 @@
 const extend = require('./tailwindExtend.js');
 const animations = require('./tailwindAnimations.js');
 module.exports = {
+  content: ['./app/components/**/*.{js,ts,jsx,tsx}', './app/containers/**/*.{js,ts,jsx,tsx}'],
   target: 'ie11',
-  purge: false,
+  experimental: {
+    optimizeUniversalDefaults: true
+  },
   options: {
     prefix: '',
     important: false,
@@ -11,7 +14,6 @@ module.exports = {
   theme: {
     screens: {
       xs: { max: '500px' },
-      xsl: '500px',
       sm: { max: '992px' },
       xsl: '500px',
       md: '992px',
@@ -33,16 +35,7 @@ module.exports = {
       '2-8xl': '2.8rem',
       '3xl': '3rem'
     },
-    borderRadius: {
-      none: '0',
-      sm: '0.125rem',
-      default: '0.25rem',
-      md: '0.375rem',
-      lg: '0.5rem',
-      full: '9999px',
-      large: '12px',
-      xl: '1.8rem'
-    },
+
     linearGradientColors: {
       home: ['#1b2735 ', '#090a0f '],
       default: ['#f9f9f9 90%', '#dcdcdc'],
@@ -100,7 +93,6 @@ module.exports = {
       20: 20,
       30: 30,
       40: 40,
-      50: 50,
       25: 25,
       50: 50,
       75: 75,

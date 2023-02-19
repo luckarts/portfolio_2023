@@ -4,10 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from 'containers/App';
-import history from 'utils/history';
 import { store } from './store';
 import 'sanitize.css/sanitize.css';
-import '../tailwind.scss';
+import '../style/tailwind.less';
 
 const MOUNT_NODE = document.getElementById('app');
 const render = () => {

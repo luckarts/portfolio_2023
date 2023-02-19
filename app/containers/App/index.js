@@ -10,7 +10,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import RenderRouter from 'routes';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 export default function App() {
   return (
     <div data-theme="dark">

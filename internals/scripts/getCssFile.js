@@ -10,7 +10,7 @@ const scssFiles = [];
 
 async function getFiles(dirs) {
   for (const dir of dirs) {
-    const files = await fg(path.join(dir, '*.css'));
+    const files = await fg(path.join(dir, '*.less'));
     for (const file of files) {
       scssFiles.push(file);
     }
@@ -29,13 +29,13 @@ async function build() {
 
   let imports = '';
   for (const file of scssFiles) {
-    imports += `@import "${file}";\n`;
+    imports += `@import "../${file}";\n`;
   }
   imports += `@import "tailwindcss/base";\n`;
   imports += `@import "tailwindcss/components";\n`;
   imports += `@import "tailwindcss/utilities";\n`;
 
-  fs.writeFileSync('./main.css', imports);
+  fs.writeFileSync('./style/main.less', imports);
 
   // execSync('npm run build-scss', { stdio: 'inherit' });
 }

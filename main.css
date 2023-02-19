@@ -1,6 +1,0 @@
-@import "app/containers/RegisterPage/index.css";
-@import "app/components/FormInputWrapper/index.css";
-@import "app/assets/sass/global.css";
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
