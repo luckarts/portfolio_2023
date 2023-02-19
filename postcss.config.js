@@ -1,5 +1,8 @@
 const tailwindcss = require('tailwindcss');
+const post_css = require('postcss-import');
+const nesting = require('postcss-nesting');
 
+const autoprefixer = require('autoprefixer');
 const tailwindJS = require('./tailwind.config.js');
 const purgecss = require('@fullhuman/postcss-purgecss')({
   content: ['./app/**/*.js', './app/*.html', './app/**/**/**/*.js', './app/**/**/*.js'],
@@ -8,12 +11,5 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
   defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/]+/g) || []
 });
 module.exports = {
-  plugins: [
-    require('postcss-import'),
-    require('postcss-nested')({
-      bubble: ['screen']
-    }),
-    tailwindcss(tailwindJS),
-    require('autoprefixer')
-  ]
+  plugins: [post_css, nesting({ enable: false }), tailwindcss(tailwindJS), autoprefixer]
 };

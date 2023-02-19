@@ -9,7 +9,7 @@
   "bin": "./bin/cli.js",
   "scripts": {
     "build-scss": "node internals/scripts/getCssFile.js",
-    "build:style": "postcss ./style/main.less -o ./style/tailwind.less",
+    "build:style": "postcss ./style/main.less -o ./style/tailwind.less --watch",
     "importCss": "nodemon --watch app/**/**/*.less --ext less --exec \"npm run build-scss\"",
     "watch:css": "nodemon --watch ./style/main.less -e css --exec \"npm run build:style\"",
     "start:dev": "npm run start",

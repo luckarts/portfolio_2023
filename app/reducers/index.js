@@ -4,6 +4,8 @@
 
 import { combineReducers } from 'redux';
 import globalReducer from 'containers/App/reducer';
+import registerPageReducer from 'containers/RegisterPage/reducer';
+import alertMessageReducer from 'containers/AlertMessage/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -11,6 +13,8 @@ import globalReducer from 'containers/App/reducer';
 export default function createReducer(injectedReducers = {}) {
   return combineReducers({
     global: globalReducer,
+    registerPageReducer: registerPageReducer,
+    alertMessageReducer: alertMessageReducer,
     ...injectedReducers
   });
 }

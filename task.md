@@ -1,9 +1,18 @@
 # Tâche principale : Mise en place de l'authentification
 
-- [ ] Mise en place de l'encryption des mots de passe
-  - [ ] Utilisation de bcrypt pour hasher les mots de passe
-- [ ] Mise en place de la gestion des sessions
-  - [ ] Utilisation de JSON Web Token (JWT) pour les sessions
-- [ ] Mise en place de la vérification de l'utilisateur
-  - [ ] Vérification des informations d'identification de l'utilisateur
-  - [ ] Gestion des erreurs (nom d'utilisateur ou mot de passe incorrect)
+- [x] Register
+      [x] Create a React components for the login form and send Data
+      [x] Create Reducers Actions et selectors and store token
+      [x] Verification of user credentials
+      [x] Managing authentication errors on the back end
+
+- [] Login
+  [] Create a React components for the login form and send Data
+  [] Create Reducers Actions et selectors and store Token
+  [] Verification of user credentials
+  [] Managing authentication errors on the back end
+
+- [] GetUser
+  [] Create guards to protect routes that require authentication
+  [] Create Reducers Actions et selectors and to get User
+  [] Set up the logout system

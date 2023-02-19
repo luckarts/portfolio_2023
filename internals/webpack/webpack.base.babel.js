@@ -35,6 +35,7 @@ module.exports = (options) => ({
           {
             loader: 'css-loader'
           },
+          
           {
             loader: 'less-loader',
             options: {
@@ -53,12 +54,7 @@ module.exports = (options) => ({
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader']
       },
-      {
-        // Preprocess 3rd party .css files located in node_modules
-        test: /\.css$/,
-        include: /node_modules/,
-        use: ['style-loader', 'css-loader']
-      },
+
       {
         test: /\.(scss|css)$/,
         exclude: /node_modules/,
@@ -69,9 +65,8 @@ module.exports = (options) => ({
           {
             loader: 'css-loader'
           },
-          {
-            loader: 'sass-loader'
-          }
+
+         
         ]
       },
       {

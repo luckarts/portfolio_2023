@@ -167,5 +167,15 @@ module.exports = {
     zIndex: ['responsive']
   },
   corePlugins: {},
-  plugins: []
+  plugins: [],
+  pluginOptions: {
+    // Désactive le plugin PostCSS Nested
+    enable: false
+    // Conserve les sélecteurs vides
+    // preserveEmpty: true
+    // Fait remonter les sélecteurs parents pour chaque niveau d'imbrication
+    //bubble: true,
+    // Préfixe les sélecteurs imbriqués avec `.nested`
+    //wrapper: '.nested'
+  }
 };
