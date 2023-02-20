@@ -36,11 +36,6 @@ module.exports = {
       '3xl': '3rem'
     },
 
-    linearGradientColors: {
-      home: ['#1b2735 ', '#090a0f '],
-      default: ['#f9f9f9 90%', '#dcdcdc'],
-      ykari: ['#6b8d77', '#bdd1b5']
-    },
     fontStyle: {
       italic: 'italic'
     },

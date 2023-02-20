@@ -11,8 +11,7 @@ export function* handleRegister() {
   yield put(asyncStartAction());
   const formValues = yield select(makeFormValuesSelector());
   const requestUrl = ApiEndpoint.getRegisterPath();
-  //delete formValues.confirmPassword;
-  //delete formValues.accept;
+
   const requestPayload = ApiEndpoint.makeApiPayload(requestUrl, POST, formValues);
   try {
     const response = yield call(request, requestPayload.url, requestPayload);
@@ -22,13 +21,12 @@ export function* handleRegister() {
     localStorage.setItem('token', response.token);
 
     yield put(asyncEndAction());
-    return yield showFormattedAlert('success', 'succès');
+    return yield showFormattedAlert('success', 'you are registed');
   } catch (error) {
     yield put(asyncEndAction());
     if (error.data && error.data.statusCode === 422) {
       return yield put(enterValidationErrorAction(error));
     }
-    console.log(error);
     return yield showAlert('error', error.message);
   }
 }

@@ -20,6 +20,7 @@ import AlertMessage from 'containers/AlertMessage';
 import { rules } from 'common/rules';
 import { useForm, Controller } from 'react-hook-form';
 import { enqueueAlertAction } from 'containers/AlertMessage/actions';
+import { Link } from 'react-router-dom';
 
 const stateSelector = createStructuredSelector({
   initialValues: makeInitialValuesSelector(),
@@ -110,6 +111,9 @@ function RegisterForm({}) {
       </div>
       <div className="formActions">
         <FormButtonWrapper className="btn btn-primary rounded-full mb-4" type="submit" label="submit" />
+        <Link className="text-text" to="/login">
+          to Login
+        </Link>
       </div>
     </form>
   );

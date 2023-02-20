@@ -3,7 +3,7 @@
  * Register Page
  *
  */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import RegisterForm from 'containers/RegisterPage/registerForm';

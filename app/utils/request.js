@@ -33,14 +33,14 @@ function checkStatus(response) {
 /**
  * Requests a URL, returning a promise
  *
- * @param  {string} url       The URL we want to request
  * @param  {object} [options] The options we want to pass to "fetch"
  *
  * @return {object}           The response data
  */
-export default function request(url, options) {
-  console.log(url, options);
-  return fetch(url, { body: JSON.stringify(options.body), headers: options.headers, method: options.method })
-    .then(checkStatus)
-    .then(parseJSON);
+export default function request(options) {
+  return fetch(options.url, {
+    body: JSON.stringify(options.body),
+    headers: options.headers,
+    method: options.method
+  }).then(parseJSON);
 }

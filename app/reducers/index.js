@@ -5,6 +5,7 @@
 import { combineReducers } from 'redux';
 import globalReducer from 'containers/App/reducer';
 import registerPageReducer from 'containers/RegisterPage/reducer';
+import loginPageReducer from 'containers/LoginPage/reducer';
 import alertMessageReducer from 'containers/AlertMessage/reducer';
 
 /**
@@ -14,6 +15,7 @@ export default function createReducer(injectedReducers = {}) {
   return combineReducers({
     global: globalReducer,
     registerPageReducer: registerPageReducer,
+    loginPageReducer: loginPageReducer,
     alertMessageReducer: alertMessageReducer,
     ...injectedReducers
   });

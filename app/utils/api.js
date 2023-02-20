@@ -1,7 +1,18 @@
 export const BASE_URL = process.env.REACT_APP_API_BASE_URI;
+const AUTH_PATH = '/auth/login';
+const PROFILE_PATH = '/auth/profile';
+const LOGOUT_PATH = '/logout';
 
 export default class ApiEndpoint {
+  static getLoginPath = () => AUTH_PATH;
+
+  static getProfilePath = () => PROFILE_PATH;
+
+  static getLogoutPath = () => LOGOUT_PATH;
+
   static getRegisterPath = () => `/auth/signup`;
+
+  static getRefreshTokenPath = () => `/refresh`;
 
   /**
    * Make API payload
@@ -42,6 +53,31 @@ export default class ApiEndpoint {
         default:
           jsonPayload.body = null;
       }
+    }
+    return jsonPayload;
+  };
+
+  /**
+   * make login request payload
+   * @param email
+   * @param password
+   * @param refresh
+   * @param refreshToken
+   * @returns {{client_secret: *, client_id: *}}
+   */
+  static getLoginPayload = (email, password, refresh = false, refreshToken = null) => {
+    const jsonPayload = {
+      client_id: process.env.REACT_APP_CLIENT_ID,
+      client_secret: process.env.REACT_APP_CLIENT_SECRET
+    };
+    if (refresh) {
+      jsonPayload.grant_type = 'refresh_token';
+      jsonPayload.refresh_token = refreshToken;
+    } else {
+      jsonPayload.grant_type = 'password';
+      jsonPayload.username = email;
+      jsonPayload.password = password;
+      jsonPayload.scope = '*';
     }
     return jsonPayload;
   };
