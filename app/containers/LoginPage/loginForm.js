@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { enterLoginAction, setFormValuesAction, enterValidationErrorAction } from 'containers/LoginPage/actions';
 import FormInputWrapper from 'components/FormInputWrapper';
 import { Link } from 'react-router-dom';

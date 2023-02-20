@@ -42,5 +42,7 @@ export default function request(options) {
     body: JSON.stringify(options.body),
     headers: options.headers,
     method: options.method
-  }).then(parseJSON);
+  })
+    .then(checkStatus)
+    .then(parseJSON);
 }

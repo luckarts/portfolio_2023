@@ -8,12 +8,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { enterRegisterAction, setFormValuesAction } from 'containers/RegisterPage/actions';
-import {
-  makeErrorSelector,
-  makeInitialValuesSelector,
-  makeIsLoadingSelector,
-  makeClearFormValueSelector
-} from 'containers/RegisterPage/selectors';
+
 import FormInputWrapper from 'components/FormInputWrapper';
 import FormButtonWrapper from 'components/FormButtonWrapper';
 import AlertMessage from 'containers/AlertMessage';
@@ -22,16 +17,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { enqueueAlertAction } from 'containers/AlertMessage/actions';
 import { Link } from 'react-router-dom';
 
-const stateSelector = createStructuredSelector({
-  initialValues: makeInitialValuesSelector(),
-  errors: makeErrorSelector(),
-  clearFormValue: makeIsLoadingSelector(),
-  isLoading: makeClearFormValueSelector()
-});
-
 function RegisterForm({}) {
   const dispatch = useDispatch();
-  const { isLoading, initialValues, clearFormValue, errors } = useSelector(stateSelector);
 
   const onFinish = async (values) => {
     try {
@@ -41,9 +28,6 @@ function RegisterForm({}) {
       dispatch(enqueueAlertAction({ error: error, type: 'error' }));
     }
   };
-  useEffect(() => {
-    console.log(errors, 'server');
-  }, [errors]);
 
   const { handleSubmit, control } = useForm();
   return (
