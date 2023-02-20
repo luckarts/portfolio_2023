@@ -1,4 +1,3 @@
-export const BASE_URL = process.env.REACT_APP_API_BASE_URI;
 const AUTH_PATH = '/auth/login';
 const PROFILE_PATH = '/auth/profile';
 const LOGOUT_PATH = '/logout';
