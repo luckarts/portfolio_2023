@@ -7,8 +7,8 @@ import {
   logoutSuccessAction
 } from 'containers/App/actions';
 import { GET_PROFILE_REQUEST, LOGOUT, REFRESH_TOKEN } from 'containers/App/constants';
-import { call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
-import ApiEndpoint, { BASE_URL } from 'utils/api';
+import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
+import ApiEndpoint from 'utils/api';
 import { GET, POST } from 'utils/constants';
 import request from 'utils/request';
 
