@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { stateSelector } from 'containers/App/selectors';
 
-function PrivateRoute({ children, path, resource, method, defaultPermission }) {
+function PrivateRoute({ children, path }) {
   const { isLogged, user } = useSelector(stateSelector);
 
   useEffect(() => {
@@ -27,10 +27,7 @@ function PrivateRoute({ children, path, resource, method, defaultPermission }) {
 }
 
 PrivateRoute.propTypes = {
-  defaultPermission: PropTypes.bool,
   path: PropTypes.string,
-  resource: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
   children: PropTypes.node
 };
 
