@@ -8,7 +8,7 @@ RUN apk update && apk add yarn curl bash python3 g++ make && rm -rf /var/cache/a
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 RUN npm install sharp
 RUN npm i -g webpack \
     babel-cli

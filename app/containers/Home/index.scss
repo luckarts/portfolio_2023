@@ -1,0 +1,24 @@
+.FadeSize {
+  animation: FadeSize 0.75s cubic-bezier(0.17, 0.88, 0.32, 1.27) 0.75s both;
+}
+.pageLoader {
+  @apply w-full top-0 flex text-center;
+}
+.pageLoader.active {
+  animation: pageLoader 1s forwards;
+  //transform: translate(-50%, -50%);
+}
+
+@keyframes pageLoader {
+  0% {
+    transform: translate(0, 0);
+    height: 100%;
+  }
+  90% {
+    transform: translate(0, -120%);
+  }
+  100% {
+    transform: translate(0, -120%);
+    display: none;
+  }
+}

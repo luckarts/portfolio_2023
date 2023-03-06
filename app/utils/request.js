@@ -26,6 +26,7 @@ function checkStatus(response) {
     return response;
   }
   const errorMessage = StatusCodesList[response.status] || 'Unknown Error';
+  console.log(errorMessage, 'ers');
   //console.error(`Error: ${errorMessage}`);
   throw new Error(errorMessage);
 }

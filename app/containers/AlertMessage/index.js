@@ -29,7 +29,7 @@ const stateSelector = createStructuredSelector({
   id: makeIdSelector()
 });
 
-export default function AlertMessage() {
+export default function AlertMessage({ className }) {
   const dispatch = useDispatch();
 
   const autoDismiss = () => dispatch(autoDismissAlertAction());
@@ -42,7 +42,7 @@ export default function AlertMessage() {
 
   useEffect(() => {
     if (message !== '') {
-      autoDismiss();
+      //autoDismiss();
     }
   }, [message]);
   if (!show) {
@@ -50,7 +50,7 @@ export default function AlertMessage() {
   }
 
   return (
-    <div className={classNames(`alert_${type}`, ' alert_container')} role="alert">
+    <div className={classNames(`alert_container alert_${type} ${className}`)} role="alert">
       <span className="block sm:inline">{message}</span>
       <span className="alert_svg_container">
         <svg

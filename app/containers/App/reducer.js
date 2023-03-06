@@ -19,7 +19,9 @@ import {
   ASYNC_END,
   ASYNC_START,
   TOGGLE_COLLAPSE,
-  CHANGE_DEVICE
+  CHANGE_DEVICE,
+  SET_LANGUAGE,
+  GET_LANGUAGE
 } from 'containers/App/constants';
 
 const device = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent) ? 'MOBILE' : 'DESKTOP';
@@ -38,6 +40,12 @@ setAutoFreeze(false);
 /* eslint-disable default-case, no-param-reassign */
 const appPageReducer = produce((draft, action) => {
   switch (action.type) {
+    case SET_LANGUAGE:
+      draft.language = action.language;
+      break;
+    case GET_LANGUAGE:
+      draft.language = action.language;
+      break;
     case CHANGE_FIELD:
       draft[action.key] = action.val;
       draft.errors[action.key] = '';

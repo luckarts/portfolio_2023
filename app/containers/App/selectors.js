@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { initialState } from 'containers/App/reducer';
 import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
 
 const selectGlobal = (state) => state.global || initialState;
 
@@ -20,12 +21,6 @@ const makeDeviceSelector = () => createSelector(selectGlobal, (globalState) => g
 
 const makeCollapsedSelector = () => createSelector(selectGlobal, (globalState) => globalState.collapsed);
 
-const makeOtpVerificationSelector = () => createSelector(selectGlobal, (globalState) => globalState.otpVerified);
-
-const makeOtpValueSelector = () => createSelector(selectGlobal, (globalState) => globalState.otp);
-
-const makeOtpErrorSelector = () => createSelector(selectGlobal, (globalState) => globalState.otpError);
-
 const stateSelector = createStructuredSelector({
   user: makeLoggedInUserSelector(),
   device: makeDeviceSelector(),
@@ -35,9 +30,6 @@ const stateSelector = createStructuredSelector({
 });
 
 export {
-  makeOtpErrorSelector,
-  makeOtpValueSelector,
-  makeOtpVerificationSelector,
   makeCollapsedSelector,
   makeDeviceSelector,
   makeIsLoadingSelector,
@@ -47,3 +39,7 @@ export {
   makeSelectLocation,
   stateSelector
 };
+/*
+export const useUser = () => {
+  return useSelector((state) => state.appPageReducer.user);
+};*/

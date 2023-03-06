@@ -4,14 +4,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from 'containers/App';
-import { store } from './store';
-import '../style/tailwind.less';
-
+import LanguageProvider from 'containers/LanguageProvider';
+import { store } from 'store';
+import '../style/tailwind.scss';
+import i18n from './i18n';
 const MOUNT_NODE = document.getElementById('app');
+
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <LanguageProvider i18n={i18n}>
+        <App />
+      </LanguageProvider>
     </Provider>,
     MOUNT_NODE
   );
@@ -20,7 +24,9 @@ const render = () => {
 if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept(
     <Provider store={store}>
-      <App />
+      <LanguageProvider i18n={i18n}>
+        <App />
+      </LanguageProvider>
     </Provider>,
     render
   ); // eslint-disable-next-line no-console

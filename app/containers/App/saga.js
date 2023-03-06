@@ -6,7 +6,7 @@ import {
   logoutErrorAction,
   logoutSuccessAction
 } from 'containers/App/actions';
-import { GET_PROFILE_REQUEST, LOGOUT, REFRESH_TOKEN } from 'containers/App/constants';
+import { GET_PROFILE_REQUEST, LOGOUT, REFRESH_TOKEN, SET_LANGUAGE } from 'containers/App/constants';
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import ApiEndpoint from 'utils/api';
 import { GET, POST } from 'utils/constants';

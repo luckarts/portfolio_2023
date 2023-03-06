@@ -1,0 +1,28 @@
+.navLink.active {
+  @apply opacity-100 scale-125;
+}
+.navLink {
+  @apply transform font-medium opacity-75 text-white transition duration-300 ease-in-out xsl:ml-10 xs:ml-6 decoration-0;
+}
+.navLink:hover {
+  @apply text-white opacity-100 scale-125;
+}
+.nav-logo {
+  height: 50px;
+  //width: 50px;
+
+  @media (max-width: 500px) {
+    height: 40px;
+    //width: 40px;
+  }
+}
+.nav-logoName {
+  margin: 0 0 0 2vh;
+  width: auto;
+  height: 30px;
+  display: block;
+
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}

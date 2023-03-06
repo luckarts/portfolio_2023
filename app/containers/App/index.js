@@ -7,37 +7,72 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import RenderRouter from 'routes';
+import ReactGA from 'react-ga';
 import { getProfileAction } from 'containers/App/actions';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/App/reducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Route, Routes, Navigate, BrowserRouter as Router } from 'react-router-dom';
 import saga from 'containers/App/saga';
-import Header from 'components/Header';
+import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
+import { routes } from 'routes';
+import { useTranslation } from 'react-i18next';
+import LoadingIndicator from 'components/LoadingIndicator';
+import { history } from 'utils/history';
+import Preloader from 'containers/Home';
+import CookieService from 'services/cookie.service';
+import { setTab } from 'containers/Swipeable/actions';
 const key = 'global';
+
 export default function App() {
+  const { t, i18n, ready } = useTranslation();
   const dispatch = useDispatch();
   const getLoggedInUserProfile = () => dispatch(getProfileAction());
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-
+  const [isPreloaded, setIsPreloaded] = useState(false);
+  //const TRACKING_ID = "UA-XXXXX-X"; / / OUR_TRACKING_ID;
+  //ReactGA.initialize(TRACKING_ID);
   useEffect(() => {
     getLoggedInUserProfile();
+    if (!CookieService.checkCookieExists('preaload')) {
+      CookieService.setCookie('preaload', true, 1800);
+    } else {
+      dispatch(setTab(1));
+      setIsPreloaded(true);
+    }
+    return () => {
+      CookieService.deleteCookie('preaload');
+    };
   }, []);
+
+  if (!ready) return <LoadingIndicator className="bg-primary" />;
   return (
     <div data-theme="dark">
       <Helmet titleTemplate="%s - Boileurplate">
         <meta name="description" content="Truthy CMS" />
       </Helmet>
-      <BrowserRouter>
-        <Header />
-
-        <RenderRouter />
-      </BrowserRouter>
+      <>
+        {!isPreloaded && <Preloader />}
+        <div className="h-full xsl:pt-32 xs:pt-12 sm:mb-4 bg-gradient-t-default relative">
+          <Router history={history}>
+            <Navbar />
+            <Suspense fallback={<LoadingIndicator className="bg-primary" />}>
+              <Routes>
+                {routes.map(({ path, element }, id) => (
+                  <Route path={`:lang` + t(path, { ns: 'routes' })} element={element} key={id} />
+                ))}
+                <Route path="*" element={<Navigate to={`:lang` + t('/notfound')} />} />
+              </Routes>
+            </Suspense>
+            <Footer />
+          </Router>
+        </div>
+      </>
     </div>
   );
 }

@@ -20,10 +20,8 @@ const babel = require('../../babel.config.js');
 const { presets } = babel;
 let plugins = babel.plugins || [];
 
-plugins.push('react-intl');
-
 // NOTE: styled-components plugin is filtered out as it creates errors when used with transform
-plugins = plugins.filter(p => p !== 'styled-components');
+plugins = plugins.filter((p) => p !== 'styled-components');
 
 // Glob to match all js files except test files
 const FILES_TO_PARSE = 'app/**/!(*.test).js';
@@ -32,11 +30,11 @@ const newLine = () => process.stdout.write('\n');
 
 // Progress Logger
 let progress;
-const task = message => {
+const task = (message) => {
   progress = animateProgress(message);
   process.stdout.write(message);
 
-  return error => {
+  return (error) => {
     if (error) {
       process.stderr.write(error);
     }
@@ -46,21 +44,14 @@ const task = message => {
 };
 
 // Wrap async functions below into a promise
-const glob = pattern =>
+const glob = (pattern) =>
   new Promise((resolve, reject) => {
-    nodeGlob(
-      pattern,
-      (error, value) => (error ? reject(error) : resolve(value)),
-    );
+    nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));
   });
 
-const readFile = fileName =>
+const readFile = (fileName) =>
   new Promise((resolve, reject) => {
-    fs.readFile(
-      fileName,
-      'utf8',
-      (error, value) => (error ? reject(error) : resolve(value)),
-    );
+    fs.readFile(fileName, 'utf8', (error, value) => (error ? reject(error) : resolve(value)));
   });
 
 // Store existing translations into memory
@@ -84,13 +75,13 @@ for (const locale of appLocales) {
     if (error.code !== 'ENOENT') {
       process.stderr.write(
         `There was an error loading this translation file: ${translationFileName}
-        \n${error}`,
+        \n${error}`
       );
     }
   }
 }
 
-const extractFromFile = async filename => {
+const extractFromFile = async (filename) => {
   try {
     const code = await readFile(filename);
 
@@ -113,12 +104,10 @@ const extractFromFile = async filename => {
 const memoryTask = glob(FILES_TO_PARSE);
 const memoryTaskDone = task('Storing language files in memory');
 
-memoryTask.then(files => {
+memoryTask.then((files) => {
   memoryTaskDone();
 
-  const extractTask = Promise.all(
-    files.map(fileName => extractFromFile(fileName)),
-  );
+  const extractTask = Promise.all(files.map((fileName) => extractFromFile(fileName)));
   const extractTaskDone = task('Run extraction on all files');
   // Run extraction on all files that match the glob on line 16
   extractTask.then(() => {
@@ -132,16 +121,14 @@ memoryTask.then(files => {
 
     for (const locale of appLocales) {
       translationFileName = `app/translations/${locale}.json`;
-      localeTaskDone = task(
-        `Writing translation messages for ${locale} to: ${translationFileName}`,
-      );
+      localeTaskDone = task(`Writing translation messages for ${locale} to: ${translationFileName}`);
 
       // Sort the translation JSON file so that git diffing is easier
       // Otherwise the translation messages will jump around every time we extract
       const messages = {};
       Object.keys(localeMappings[locale])
         .sort()
-        .forEach(key => {
+        .forEach((key) => {
           messages[key] = localeMappings[locale][key];
         });
 
@@ -154,7 +141,7 @@ memoryTask.then(files => {
       } catch (error) {
         localeTaskDone(
           `There was an error saving this translation file: ${translationFileName}
-          \n${error}`,
+          \n${error}`
         );
       }
     }

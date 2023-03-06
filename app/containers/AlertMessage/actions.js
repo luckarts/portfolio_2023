@@ -7,6 +7,7 @@ import { ALERT_UNMOUNT, AUTO_DISMISS_ALERT, CLEAR_ALERT, SHOW_ALERT_MESSAGE } fr
  */
 
 export function enqueueAlertAction(alert) {
+  console.log(alert);
   return {
     type: SHOW_ALERT_MESSAGE,
     alert

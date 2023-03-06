@@ -1,7 +1,11 @@
 const extend = require('./tailwindExtend.js');
 const animations = require('./tailwindAnimations.js');
 module.exports = {
-  content: ['./app/components/**/*.{js,ts,jsx,tsx}', './app/containers/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './app/components/**/*.{js,ts,jsx,tsx}',
+    './app/containers/**/*.{js,ts,jsx,tsx}',
+    './app/containers/**/**/*.{js,ts,jsx,tsx}'
+  ],
   target: 'ie11',
   experimental: {
     optimizeUniversalDefaults: true
@@ -40,7 +44,7 @@ module.exports = {
       italic: 'italic'
     },
     fontFamily: {
-      portfolio: ['"Open sans"', 'sans-serif'],
+      portfolio: ['"Roboto"', 'sans-serif'],
       mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace']
     },
 
@@ -81,6 +85,11 @@ module.exports = {
       normal: '0',
       wide: '0.05em'
     },
+    linearGradientColors: {
+      home: ['#1b2735 ', '#090a0f '],
+      default: ['#f9f9f9 90%', '#dcdcdc'],
+      ykari: ['#6b8d77', '#bdd1b5']
+    },
     zIndex: {
       0: 0,
       1: 1,
@@ -94,23 +103,23 @@ module.exports = {
       100: 100,
       auto: 'auto'
     },
+
     extend,
     animations,
-
-    animationDelay: {
-      // defaults to these values
-      default: '0s',
-      '0s': '0s',
-      '02s': '-0.2s',
-      '04s': '-0.4s',
-      '0.5s': '0.5s',
-      '1s': '1s',
-      '1.5s': '1.5s',
-      '2s': '2s',
-      '2.5s': '2s',
-      '3s': '3s',
-      '4s': '4s',
-      '5s': '5s'
+    animation: {
+      bulging: 'bulging'
+    },
+    keyframes: {
+      bulging: {
+        '100%': {
+          transform: 'scale(0)',
+          opacity: '0.5'
+        },
+        '0%': {
+          transform: 'scale(1)',
+          opacity: '1'
+        }
+      }
     }
   },
   variants: {
@@ -147,6 +156,7 @@ module.exports = {
     position: ['responsive'],
     resize: ['responsive'],
     shadows: ['responsive'],
+    animationDelay: ['responsive', 'hover'],
     svgFill: [],
     svgStroke: [],
     textAlign: ['responsive'],
@@ -162,7 +172,7 @@ module.exports = {
     zIndex: ['responsive']
   },
   corePlugins: {},
-  plugins: [],
+  plugins: [require('tailwindcss-animations'), require('tailwindcss-gradients')],
   pluginOptions: {
     // Désactive le plugin PostCSS Nested
     enable: false

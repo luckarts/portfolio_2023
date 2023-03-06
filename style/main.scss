@@ -1,0 +1,16 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "../app/containers/App/index.scss";
+@import "../app/containers/Galerie/ListIllustration/style.scss";
+@import "../app/containers/Home/index.scss";
+@import "../app/containers/Home/stars.scss";
+@import "../app/containers/Projets/index.scss";
+@import "../app/containers/RegisterPage/index.scss";
+@import "../app/components/Button/index.scss";
+@import "../app/components/CustomLink/index.scss";
+@import "../app/components/Footer/index.scss";
+@import "../app/components/Navbar/index.scss";
+@import "../app/components/Navbar/style.scss";
+@import "../app/assets/css/global.scss";
+@import "../app/assets/css/typography.scss";

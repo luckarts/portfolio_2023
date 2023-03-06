@@ -22,7 +22,8 @@ import {
   LOGOUT_ERROR,
   LOGOUT_SUCCESS,
   REFRESH_TOKEN,
-  TOGGLE_COLLAPSE
+  TOGGLE_COLLAPSE,
+  SET_LANGUAGE
 } from 'containers/App/constants';
 
 /**

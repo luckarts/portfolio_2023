@@ -1,0 +1,78 @@
+#app {
+  @apply bg-bg min-h-screen min-w-full;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  text-decoration-line: none;
+}
+[data-theme='dark'] {
+  --primary-color: #338de6;
+  --bg: #111213;
+  --text-color: #50535e;
+  --title-color: #d1d4dc;
+  --accent-color: #37cdbe;
+  --neutral-color: #3d4451;
+  --base-100-color: #ffffff;
+  --border-color: #4b4b4f;
+  --border-color-focus: #808084;
+  --input-bg-color: #1e1e22;
+}
+
+.preload::-webkit-scrollbar {
+  display: none;
+}
+.preload {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+.fadeSlide {
+  opacity: 0;
+  animation-name: slideInRight;
+  animation-duration: 1s;
+  transition-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.delay-200 {
+  @apply animation-delay-200;
+}
+.delay-400 {
+  @apply animation-delay-400;
+}
+.delay-600 {
+  @apply animation-delay-600;
+}
+.delay-800 {
+  @apply animation-delay-800;
+}
+.delay-1000 {
+  @apply animation-delay-1000;
+}
+.delay-1200 {
+  @apply animation-delay-1200;
+}
+.delay-1400 {
+  @apply animation-delay-1400;
+}
+.delay-1600 {
+  @apply animation-delay-1600;
+}
+.delay-2000 {
+  @apply animation-delay-2000;
+}

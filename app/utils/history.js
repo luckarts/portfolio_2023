@@ -1,3 +1,3 @@
-import { createBrowserHistory } from 'history';
-const history = createBrowserHistory();
-export default history;
+import { store } from '../store';
+import { createReduxHistory } from 'utils/routerHistory';
+export const history = createReduxHistory(store);

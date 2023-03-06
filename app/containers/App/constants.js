@@ -23,3 +23,5 @@ export const CHANGE_DEVICE = 'containers/App/CHANGE_DEVICE';
 export const CHANGE_OTP_VALUE = 'containers/App/CHANGE_OTP_VALUE';
 export const AUTHENTICATE_OTP = 'containers/App/AUTHENTICATE_OTP';
 export const OTP_ERROR = 'containers/App/OTP_ERROR';
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+export const GET_LANGUAGE = 'GET_LANGUAGE';

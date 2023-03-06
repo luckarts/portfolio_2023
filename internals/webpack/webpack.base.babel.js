@@ -19,6 +19,16 @@ module.exports = (options) => ({
   module: {
     rules: [
       {
+        test: /\.json$/i,
+        type: 'javascript/auto',
+        loader: 'i18next-loader',
+        options: {
+          backend: {
+            loadPath: 'public/locales/{{lng}}/{{ns}}.json'
+          }
+        }
+      },
+      {
         test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
         exclude: /node_modules/,
         use: {
@@ -35,7 +45,7 @@ module.exports = (options) => ({
           {
             loader: 'css-loader'
           },
-          
+
           {
             loader: 'less-loader',
             options: {
@@ -64,9 +74,7 @@ module.exports = (options) => ({
           },
           {
             loader: 'css-loader'
-          },
-
-         
+          }
         ]
       },
       {

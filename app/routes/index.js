@@ -1,23 +1,37 @@
-import React from 'react';
-
-import HomePage from 'containers/HomePage/Loadable';
-import RegisterPage from 'containers/RegisterPage/Loadable';
-import LoginPage from 'containers/LoginPage/Loadable';
-import Dashboard from 'containers/Dashboard/Loadable';
+import React, { Suspense } from 'react';
 import PublicRoute from 'containers/PublicRoute';
 import PrivateRoute from 'containers/PrivateRoute';
 
-import { useRoutes } from 'react-router-dom';
+import Projects from 'containers/Projets';
 
-const routes = [
+import RegisterPage from 'containers/RegisterPage/Loadable';
+import LoginPage from 'containers/LoginPage/Loadable';
+import NotFound from 'containers/NotFound/Loadable';
+import Swipeable from 'containers/Swipeable/Loadable';
+import Profile from 'containers/Resume/Loadable';
+
+export const routes = [
   {
     path: '/',
     element: (
       <PublicRoute>
-        <HomePage />
+        <Swipeable>
+          <Projects />
+        </Swipeable>
       </PublicRoute>
     )
   },
+  {
+    path: '/luc_bachelerie',
+    element: (
+      <PublicRoute>
+        <Swipeable>
+          <Profile />
+        </Swipeable>
+      </PublicRoute>
+    )
+  },
+
   {
     path: '/register',
     element: (
@@ -35,15 +49,11 @@ const routes = [
     )
   },
   {
-    path: '/dashboard',
+    path: '/notFound',
     element: (
-      <PrivateRoute>
-        <Dashboard />
-      </PrivateRoute>
+      <PublicRoute>
+        <NotFound />
+      </PublicRoute>
     )
   }
 ];
-
-const RenderRouter = () => useRoutes(routes);
-
-export default RenderRouter;
