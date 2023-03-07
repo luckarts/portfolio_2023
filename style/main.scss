@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "../app/containers/AlertMessage/index.scss";
 @import "../app/containers/App/index.scss";
 @import "../app/containers/Galerie/ListIllustration/style.scss";
 @import "../app/containers/Home/index.scss";
@@ -9,7 +10,9 @@
 @import "../app/containers/RegisterPage/index.scss";
 @import "../app/components/Button/index.scss";
 @import "../app/components/CustomLink/index.scss";
+@import "../app/components/Dropzone/style.scss";
 @import "../app/components/Footer/index.scss";
+@import "../app/components/FormInputWrapper/index.scss";
 @import "../app/components/Navbar/index.scss";
 @import "../app/components/Navbar/style.scss";
 @import "../app/assets/css/global.scss";

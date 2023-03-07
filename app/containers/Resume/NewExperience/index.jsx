@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ExperienceForm from '../ExperienceForm';
-import usePost from 'utils/postData';
-import api from 'API/api';
-
+import { useDispatch } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
+import { asyncStartAction, updateExperienceAction, getExperienceByCompanyAction } from 'containers/Resume/actions';
+import { enqueueAlertAction } from 'containers/AlertMessage/actions';
+import { makeSelectExperience } from 'containers/Resume/selectors';
+import { fields } from 'containers/Resume/fieldsExperiences';
+import Form from 'components/Form';
+const stateSelector = createStructuredSelector({
+  formValues: makeSelectExperience()
+});
 const CreateExperience = () => {
   const { id } = useParams();
-  const [values, setSubmitValues] = useState({});
-  const [bool, setIsSubmit] = useState(false);
 
-  const createExperience = usePost(api.experience.createExperience, bool, values);
-  const [form, setState] = useState({
-    year: null,
-    date: null,
-    job: null,
-    company: null,
-    link: null,
-    list_experience: [{ description: null, id: null }]
-  });
+  const dispatch = useDispatch();
+  let { formValues } = useSelector(stateSelector);
 
-  const onSubmit = values => {
+  const onSubmit = (values) => {
     const result = {
       year: values.year,
       date: values.date,
@@ -28,7 +27,6 @@ const CreateExperience = () => {
       link: values.link,
       list_experience: []
     };
-
     const ArrValues = Object.values(values);
 
     let j = -1;
@@ -43,20 +41,16 @@ const CreateExperience = () => {
     }
 
     if (values) {
-      setIsSubmit(true);
-      setSubmitValues(result);
+      try {
+        dispatch(updateExperienceAction(values));
+        dispatch(asyncStartAction());
+      } catch (error) {
+        dispatch(enqueueAlertAction({ error: error, type: 'error' }));
+      }
     }
   };
 
-  return (
-    <ExperienceForm
-      loading={createExperience.loading}
-      setState={setState}
-      title={'Nouvelle Experience'}
-      initialState={form}
-      onSubmit={onSubmit}
-    />
-  );
+  return <Form fields={fields} add={true} defaultValue={formValues} title={'Add Experience'} onSubmit={onSubmit} />;
 };
 
 export default CreateExperience;

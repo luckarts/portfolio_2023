@@ -22,11 +22,10 @@ function parseJSON(response) {
  */
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= 200 && response.status < 305) {
     return response;
   }
   const errorMessage = StatusCodesList[response.status] || 'Unknown Error';
-  console.log(errorMessage, 'ers');
   //console.error(`Error: ${errorMessage}`);
   throw new Error(errorMessage);
 }

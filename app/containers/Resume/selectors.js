@@ -12,12 +12,12 @@ const selectExperiences = (state) => {
 const selectUser = (state) => {
   return state.resume || initialState;
 };
-
 /**
  * Select the language locale
  */
 const makeSelectUSer = () => createSelector(selectUser, (state) => state.user.user);
 
 const makeSelectExperiences = () => createSelector(selectExperiences, (state) => state.experiences.experiences);
+const makeSelectExperience = () => createSelector(selectExperiences, (state) => state.formValues);
 
-export { selectExperiences, makeSelectUSer, selectUser, makeSelectExperiences };
+export { selectExperiences, makeSelectUSer, selectUser, makeSelectExperience, makeSelectExperiences };

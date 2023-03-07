@@ -19,21 +19,33 @@ import { Route, Routes, Navigate, BrowserRouter as Router } from 'react-router-d
 import saga from 'containers/App/saga';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
-import { routes } from 'routes';
+import { publicRoutes } from 'routes/publicRoutes';
+import { privateRoutes } from 'routes/privateRoutes';
 import { useTranslation } from 'react-i18next';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { history } from 'utils/history';
 import Preloader from 'containers/Home';
 import CookieService from 'services/cookie.service';
 import { setTab } from 'containers/Swipeable/actions';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectLanguage } from 'containers/LanguageProvider/selectors';
+import { useSelector } from 'react-redux';
+
 const key = 'global';
+
+const stateSelector = createStructuredSelector({
+  language: makeSelectLanguage()
+});
 
 export default function App() {
   const { t, i18n, ready } = useTranslation();
+
   const dispatch = useDispatch();
   const getLoggedInUserProfile = () => dispatch(getProfileAction());
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+  let { language } = useSelector(stateSelector);
+
   const [isPreloaded, setIsPreloaded] = useState(false);
   //const TRACKING_ID = "UA-XXXXX-X"; / / OUR_TRACKING_ID;
   //ReactGA.initialize(TRACKING_ID);
@@ -63,10 +75,13 @@ export default function App() {
             <Navbar />
             <Suspense fallback={<LoadingIndicator className="bg-primary" />}>
               <Routes>
-                {routes.map(({ path, element }, id) => (
+                {publicRoutes.map(({ path, element }, id) => (
                   <Route path={`:lang` + t(path, { ns: 'routes' })} element={element} key={id} />
                 ))}
-                <Route path="*" element={<Navigate to={`:lang` + t('/notfound')} />} />
+                {privateRoutes.map(({ path, element }, id) => (
+                  <Route path={`:lang` + t(path, { ns: 'routes' })} element={element} key={id} />
+                ))}
+                <Route path="*" element={<Navigate to={language + t('/notfound', { ns: 'routes' })} />} />
               </Routes>
             </Suspense>
             <Footer />

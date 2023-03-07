@@ -15,13 +15,6 @@ const propTypes = {
 };
 
 const CardProject = ({ keyID, title, img, techno, description, linkCode, linkWebsite, edit, id }) => {
-  let link;
-
-  if (edit) {
-    let slug = title.toLowerCase();
-    link = `/edit/project/${slug}`;
-  }
-
   return (
     <div className={`mb-6 ${keyID % 2 === 0 ? 'md:pr-4' : ''} `}>
       <div className="border border-gray-400 bg-white rounded-xlg shadow hover:shadow-md ">
@@ -43,7 +36,7 @@ const CardProject = ({ keyID, title, img, techno, description, linkCode, linkWeb
           <div>
             {edit && (
               <Button
-                link={link}
+                link={title.toLowerCase()}
                 className={`text-secondary small rounded border-2 border-secondary ${linkCode && 'mr-4'}`}
               >
                 <span> Edit</span>

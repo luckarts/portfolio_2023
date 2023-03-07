@@ -39,7 +39,6 @@ export function enterValidationErrorAction(errors) {
 }
 
 export function enterLoginAction() {
-  console.log('process');
   return {
     type: LOGIN_PROCESS
   };

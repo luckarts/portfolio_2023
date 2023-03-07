@@ -23,7 +23,6 @@ export function* handleProfile() {
 
   try {
     const response = yield call(request, payload);
-
     yield put(isLoggedSuccessAction());
     yield put(hideHeaderAction(false));
     return yield put(getProfileSuccessAction(response));

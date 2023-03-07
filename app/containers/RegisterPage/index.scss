@@ -1,5 +1,5 @@
 .formGroup {
-  @apply w-full mb-4 text-textSecondary;
+  @apply w-full mb-4 text-textSecondary flex flex-col;
 }
 .formContainer {
   @apply flex flex-wrap py-4;
@@ -8,7 +8,7 @@
   @apply flex flex-col mt-4;
 }
 .form {
-  @apply bg-bg-secondary shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md mt-8 mx-auto;
+  @apply bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md mt-8 mx-auto;
 }
 
 .btn {

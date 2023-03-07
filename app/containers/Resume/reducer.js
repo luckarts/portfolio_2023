@@ -12,8 +12,16 @@ export const initialState = {
     isLoading: false,
     errors: []
   },
+  formValues: {
+    year: null,
+    date: null,
+    job: null,
+    company: null,
+    link: null,
+    list_experience: [{ description: null, id: null }]
+  },
   user: {
-    user: {},
+    user: { description: null, cv: null },
     isLoading: false,
     errors: []
   }

@@ -4,5 +4,9 @@
   "/dashboard": "/admin",
   "/notfound": "/404",
   "/luc_bachelerie": "/luc_bachelerie",
+  "/edit/projects": "/edit/projects",
+  "/projectName": "/edit/projects/:projectName",
+  "/new": "/edit/projects/new",
+  "/editProfile": "/edit/profile",
   "/": "/"
 }

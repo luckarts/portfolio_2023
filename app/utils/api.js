@@ -9,10 +9,11 @@ export default class ApiEndpoint {
   static getLogoutPath = () => LOGOUT_PATH;
   static getRegisterPath = () => `/auth/signup`;
 
-  static getUserPublicPath = () => ` /api/users/user`;
+  static getUserPublicPath = () => `/auth/user`;
 
   //Project
-  static getProjectsPath = (projectName) => `/api/projects/get/project/${projectName}`;
+  static getProjects = () => `/api/projects/get/projects`;
+  static getProjectName = (projectName) => `/api/projects/get/project/${projectName}`;
   static getProjectsByTagPath = (tag) => `/api/projects/get/projects/${tag}`;
   static createProjectPath = () => '/api/projects/post/project';
   static updateProjectPath = (projectId) => `/api/projects/update/${projectId}`;

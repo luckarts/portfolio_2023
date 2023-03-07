@@ -8,14 +8,10 @@
 
 import React, { useEffect, Children } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
 import { I18nextProvider } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { initI18n } from 'containers/LanguageProvider/actions';
 import { useTranslation } from 'react-i18next';
-import { makeSelectLanguage } from 'containers/LanguageProvider/selectors';
-import { createStructuredSelector } from 'reselect';
 
 export default function LanguageProvider({ children, i18n }) {
   const dispatch = useDispatch();

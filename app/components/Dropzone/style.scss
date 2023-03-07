@@ -1,0 +1,23 @@
+.imgPreview {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.dropZone {
+    margin-top: 2rem;
+}
+
+.pdfPreview {
+    padding: 15px 0;
+    width: 100%;
+    ;
+
+
+}

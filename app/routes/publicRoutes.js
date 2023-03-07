@@ -3,14 +3,17 @@ import PublicRoute from 'containers/PublicRoute';
 import PrivateRoute from 'containers/PrivateRoute';
 
 import Projects from 'containers/Projets';
-
 import RegisterPage from 'containers/RegisterPage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFound from 'containers/NotFound/Loadable';
 import Swipeable from 'containers/Swipeable/Loadable';
 import Profile from 'containers/Resume/Loadable';
+import EditProject from 'containers/Projets/EditProject';
+import NewProject from 'containers/Projets/NewProject';
+import NewExperience from 'containers/Resume/NewExperience';
+import EditExperience from 'containers/Resume/EditExperience';
 
-export const routes = [
+export const publicRoutes = [
   {
     path: '/',
     element: (
@@ -48,6 +51,7 @@ export const routes = [
       </PublicRoute>
     )
   },
+
   {
     path: '/notFound',
     element: (

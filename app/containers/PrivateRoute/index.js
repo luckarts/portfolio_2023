@@ -9,21 +9,26 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { stateSelector } from 'containers/App/selectors';
+import { makeIsLoggedSelector } from 'containers/App/selectors';
+import { createStructuredSelector } from 'reselect';
+
+const stateSelector = createStructuredSelector({
+  isLogged: makeIsLoggedSelector()
+});
 
 function PrivateRoute({ children, path }) {
-  const { isLogged, user } = useSelector(stateSelector);
+  const { isLogged } = useSelector(stateSelector);
 
   useEffect(() => {
     if (isLogged) {
     }
-  }, [user, path]);
+  }, [isLogged, path]);
 
   if (isLogged === null) {
     return <LoadingIndicator />;
   }
 
-  return isLogged ? children : <Navigate to="/login" />;
+  return children;
 }
 
 PrivateRoute.propTypes = {

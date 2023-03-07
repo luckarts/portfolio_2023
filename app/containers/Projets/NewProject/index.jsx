@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import ProjectForm from '../ProjectForm';
-import api from 'API/api';
-import usePost from 'utils/postData';
+import React, { useEffect, useState } from 'react';
+import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
+import { getProjectAction, newProjectAction, asyncStartAction } from 'containers/Projets/actions';
+import { enqueueAlertAction } from 'containers/AlertMessage/actions';
+import { useDispatch } from 'react-redux';
+import { makeSelectProject } from 'containers/Projets/selectors';
+import { fields } from 'containers/Projets/fields';
+import { Form } from 'components';
+import saga from 'containers/Projets/saga';
+
+const stateSelector = createStructuredSelector({
+  formValues: makeSelectProject()
+});
+
 const NewProject = () => {
-  const [form, setState] = useState({
-    title: null,
-    description: null,
-    techno: null,
-    linkCode: null,
-    linkWebsite: null,
-    img: null,
-    position: null
-  });
+  let { formValues } = useSelector(stateSelector);
+  const dispatch = useDispatch();
 
-  const [values, setSubmitValues] = useState(null);
-  const [bool, setIsSubmit] = useState(false);
-  const createProject = usePost(api.project.createProject, bool, values);
-
-  const onSubmit = values => {
+  const onSubmit = (values) => {
     let formdata = new FormData();
     for (let key in values) {
       if (key === 'img') {
@@ -26,15 +26,28 @@ const NewProject = () => {
         formdata.append(key, values[key]);
       }
     }
-    setIsSubmit(true);
-    setSubmitValues(formdata);
+    try {
+      dispatch(newProjectAction(values));
+      dispatch(asyncStartAction());
+    } catch (error) {
+      dispatch(enqueueAlertAction({ error: error, type: 'error' }));
+    }
   };
+
+  const [newImage, setImg] = useState({});
+
+  const handleOnDrop = (e) => {
+    let file = e.target.files[0];
+    let value = Object.assign(file, { preview: URL.createObjectURL(file) });
+    setImg({ img: value });
+  };
+
   return (
-    <ProjectForm
-      title={'Nouveau Projet'}
-      loading={createProject.loading}
-      initialState={form}
-      setState={setState}
+    <Form
+      fields={fields}
+      defaultValue={formValues}
+      handleOnDrop={handleOnDrop}
+      title={'New Project'}
       onSubmit={onSubmit}
     />
   );

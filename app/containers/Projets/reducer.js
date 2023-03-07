@@ -4,12 +4,22 @@
  *
  */
 import produce from 'immer';
-import { SET_PROJECTS, ASYNC_START, ASYNC_END } from 'containers/Projets/constants';
+import { SET_PROJECTS, ASYNC_START, ASYNC_END, SET_PROJECT, UPDATE_PROJECT } from 'containers/Projets/constants';
 
 export const initialState = {
   projects: [],
   isLoading: false,
-  errors: []
+  errors: [],
+  formValues: {
+    title: null,
+    description: null,
+    id: null,
+    techno: null,
+    linkCode: null,
+    linkWebsite: null,
+    img: null,
+    position: null
+  }
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -18,6 +28,8 @@ const projectsReducer = produce((draft, action) => {
     case SET_PROJECTS:
       draft.projects = action.projects;
       break;
+    case SET_PROJECT:
+      draft.formValues = action.project;
     case ASYNC_START:
       draft.isLoading = true;
       break;

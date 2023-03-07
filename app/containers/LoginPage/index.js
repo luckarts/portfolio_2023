@@ -7,10 +7,10 @@
 import React from 'react';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-
 import reducer from 'containers/LoginPage/reducer';
 import LoginForm from 'containers/LoginPage/loginForm';
 import saga from 'containers/LoginPage/saga';
+import Form from 'components/Form';
 
 const key = 'login';
 

@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ExperienceForm from '../ExperienceForm';
-import usePost from 'utils/postData';
-import fetchData from 'utils/fetchData';
-import api from 'API/api';
+import ExperienceForm from 'containers/Resume/ExperienceForm';
+import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
+import { asyncStartAction, updateExperienceAction, getExperienceByCompanyAction } from 'containers/Resume/actions';
+import { enqueueAlertAction } from 'containers/AlertMessage/actions';
+import { useDispatch } from 'react-redux';
+import { makeSelectExperience } from 'containers/Resume/selectors';
+const stateSelector = createStructuredSelector({
+  experience: makeSelectExperience()
+});
 
 const UpdateExperience = () => {
   let experiences;
   let { company } = useParams();
+  const getExperience = () => dispatch(getExperienceByCompanyAction(company));
+  let { experience } = useSelector(stateSelector);
+  const dispatch = useDispatch();
 
-  const [values, setSubmitValues] = useState(null);
-  const [newExperience, setNewExperience] = useState({});
-  const [bool, setIsSubmit] = useState(false);
-  const [boolExperience, setIsSubmitExperience] = useState(false);
-  const getExperiences = fetchData(api.experience.getExperience, company);
+  useEffect(() => {
+    getExperience();
+  }, []);
 
-  experiences = getExperiences.data ? getExperiences.data.listExperiences : {};
-  const updateProject = usePost(api.experience.updateExperience, bool, {
-    id: experiences && experiences.id,
-    experience: values
-  });
-
-  const newExperiences = usePost(api.experience.createListExperience, boolExperience, {
-    id: experiences && experiences.id,
-    newExperiences: newExperience
-  });
-  const onSubmit = values => {
+  const onSubmit = (values) => {
     const result = {
       year: values.year,
       date: values.date,
@@ -50,22 +47,15 @@ const UpdateExperience = () => {
           id: experiences.id
         };
       }
-      setNewExperience(newExp);
-      setIsSubmitExperience(true);
     }
-    if (values) {
-      setSubmitValues(result);
-      setIsSubmit(true);
+    try {
+      dispatch(updateExperienceAction(result));
+      dispatch(asyncStartAction());
+    } catch (error) {
+      dispatch(enqueueAlertAction({ error: error, type: 'error' }));
     }
   };
 
-  return (
-    <ExperienceForm
-      loading={updateProject.loading}
-      title={'Experience à '}
-      initialState={experiences}
-      onSubmit={onSubmit}
-    />
-  );
+  return <ExperienceForm title={'Experience à '} initialState={experience} onSubmit={onSubmit} />;
 };
 export default UpdateExperience;

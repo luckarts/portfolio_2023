@@ -41,6 +41,7 @@ export default function AlertMessage({ className }) {
   const { type, id, message, show } = useSelector(stateSelector);
 
   useEffect(() => {
+    console.log(type);
     if (message !== '') {
       //autoDismiss();
     }

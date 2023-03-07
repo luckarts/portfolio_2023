@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CardProject from './CardProject';
 import { Helmet } from 'react-helmet';
 import { makeSelectProjects } from 'containers/Projets/selectors';
+import { makeIsLoggedSelector } from 'containers/App/selectors';
 import { CustomLink } from 'components';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
@@ -24,22 +25,26 @@ const propTypes = {
 };
 const key = 'login';
 
-const ProjectPage = ({ edit, isAuthenticated }, ...props) => {
+const stateSelector = createStructuredSelector({
+  isLogged: makeIsLoggedSelector(),
+  projects: makeSelectProjects()
+});
+
+const ProjectPage = ({ edit = false }) => {
   const tags = ['React', 'TDD', 'NextJS', 'Angular', 'MongoDb', 'GraphQL'];
   const [tag, setTag] = useState('');
   const dispatch = useDispatch();
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
   const getProjects = () => dispatch(getProjectsAction());
-  const stateSelector = createStructuredSelector({
-    projects: makeSelectProjects()
-  });
-  let { projects } = useSelector(stateSelector);
+
+  let { projects, isLogged } = useSelector(stateSelector);
   const [filterProject, setFilterProject] = useState([]);
 
   const scrollTop = () => {
     window.scrollTo({ top: 150, behavior: 'smooth' });
   };
+
   const handleClick = (tag) => {
     setTag(tag);
     scrollTop();
@@ -48,6 +53,7 @@ const ProjectPage = ({ edit, isAuthenticated }, ...props) => {
   useEffect(() => {
     getProjects();
   }, []);
+
   useEffect(() => {
     if (tag != '') {
       const filterProject = projects.filter((projet) => projet.techno?.split('/').includes(`${tag}`));
@@ -69,13 +75,13 @@ const ProjectPage = ({ edit, isAuthenticated }, ...props) => {
         {edit ? ' Edit projets' : 'Mes projets'} <span className="paintBgText "></span>
       </h2>
 
-      {edit && (
-        <CustomLink variante="link" className="addIcon" href="/project/new">
+      {edit && isLogged && (
+        <CustomLink variante="link" addIcon className="addIcon" href="/new">
           Ajout d'un nouveau projet
         </CustomLink>
       )}
-      {!edit && isAuthenticated && (
-        <CustomLink variante="link" className="editIcon" href="/edit/projects">
+      {!edit && isLogged && (
+        <CustomLink variante="link" editIcon className="editIcon" href="/edit/projects">
           Gerer mes projets
         </CustomLink>
       )}
@@ -106,7 +112,7 @@ const ProjectPage = ({ edit, isAuthenticated }, ...props) => {
               className={`md:w-1/2 sm:w-full fadeSlide delay-${key === 0 ? 200 : (key / 5.0) * 1000 + 200}`}
               key={projet.id}
             >
-              <CardProject keyID={key} {...projet} edit={edit} {...props} />
+              <CardProject keyID={key} {...projet} edit={edit} />
             </div>
           ))}
         </div>

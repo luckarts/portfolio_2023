@@ -8,13 +8,11 @@ import { POST } from 'utils/constants';
 import { showAlert, showFormattedAlert } from 'common/saga';
 
 export function* attemptLogin() {
-  console.log('login');
   yield put(asyncStartAction());
   const formValues = yield select(makeFormValuesSelector());
   const requestUrl = ApiEndpoint.getLoginPath();
   const requestPayload = ApiEndpoint.makeApiPayload(requestUrl, POST, formValues);
   try {
-    console.log(requestPayload);
     const sagaRequest = yield call(request, requestPayload);
     localStorage.setItem('token', sagaRequest.token);
     yield put(asyncEndAction());

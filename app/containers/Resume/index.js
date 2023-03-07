@@ -5,6 +5,7 @@ import BannerProfile from './BannerProfile';
 import ListExperience from './ListExperiences';
 import { CustomLink } from 'components';
 import { makeSelectExperiences, makeSelectUSer } from 'containers/Resume/selectors';
+import { makeIsLoggedSelector } from 'containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -15,8 +16,13 @@ import { useDispatch } from 'react-redux';
 import { getExperiencesAction, getUserAction } from 'containers/Resume/actions';
 import AlertMessage from 'containers/AlertMessage';
 
+const stateSelector = createStructuredSelector({
+  user: makeSelectUSer(),
+  experiences: makeSelectExperiences(),
+  isLogged: makeIsLoggedSelector()
+});
 const key = 'resume';
-const ResumePage = ({ edit, isAuthenticated }) => {
+const ResumePage = ({ edit }) => {
   let id, lastIdExp;
   const dispatch = useDispatch();
   useInjectReducer({ key, reducer });
@@ -24,11 +30,7 @@ const ResumePage = ({ edit, isAuthenticated }) => {
   const getResume = () => dispatch(getExperiencesAction());
   const getUser = () => dispatch(getUserAction());
 
-  const stateSelector = createStructuredSelector({
-    user: makeSelectUSer(),
-    experiences: makeSelectExperiences()
-  });
-  const { experiences, user } = useSelector(stateSelector);
+  const { experiences, user, isLogged } = useSelector(stateSelector);
   useEffect(() => {
     getResume();
     getUser();
@@ -47,12 +49,14 @@ const ResumePage = ({ edit, isAuthenticated }) => {
         <span className="paintBgText"></span>
       </h1>
       <BannerProfile user={user} />
-      {!edit && isAuthenticated && (
-        <CustomLink editIcon className="link" href="/edit/profile">
+
+      {!edit && isLogged && (
+        <CustomLink editIcon variante="link" href="/edit/profile">
           Gerer mon profil
         </CustomLink>
       )}
-      {user?.description && (
+
+      {user.description && (
         <div className="w-3/5 sm:w-11/12 m-auto animation-FadeUp animation-once delay-1000">
           <h3 className="pt-2">Information</h3>
           <div className="flex justify-between">
@@ -62,12 +66,12 @@ const ResumePage = ({ edit, isAuthenticated }) => {
           </div>
         </div>
       )}
-      {edit && isAuthenticated && (
+      {edit && isLogged && (
         <CustomLink variante="link" addIcon href={`/experience/new`}>
           Ajoutez de nouvelles Experiences
         </CustomLink>
       )}
-      {!edit && isAuthenticated && (
+      {!edit && isLogged && (
         <CustomLink variante="link" editIcon href="/edit/experience">
           Gerer mes experiences
         </CustomLink>
