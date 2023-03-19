@@ -31,7 +31,7 @@ const stateSelector = createStructuredSelector({
 });
 
 const ProjectPage = ({ edit = false }) => {
-  const tags = ['React', 'TDD', 'NextJS', 'Angular', 'MongoDb', 'GraphQL'];
+  const tags = ['React', 'TDD', 'NextJS', 'MongoDb', 'GraphQL'];
   const [tag, setTag] = useState('');
   const dispatch = useDispatch();
   useInjectReducer({ key, reducer });

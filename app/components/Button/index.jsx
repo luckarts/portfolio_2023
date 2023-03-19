@@ -15,8 +15,8 @@ const stateSelector = createStructuredSelector({
 const Button = ({
   editIcon,
   addIcon,
-  className,
-  variante,
+  className = '',
+  variante = '',
   href,
   children,
   type,

@@ -26,7 +26,7 @@ export default class ApiEndpoint {
   static getExperiencesByCompanyPath = (company) => `/api/experiences/get/experiences/${company}`;
   static createExperiencePath = () => '/api/experiences/post/listexperience';
   static updateExperiencePath = (experienceId) => `/api/experiences/update/${experienceId}`;
-
+  static deleteExperiencePath = (experienceId) => `/api/experiences/delete/${experienceId}`;
   //artworks
   static getArtworksPath = () => '/api/gallery/get/gallery';
   static getArtworksByTagPath = (tag) => `/api/gallery/get/gallery/${tag}`;
@@ -41,6 +41,7 @@ export default class ApiEndpoint {
    * @returns {{headers: {}, method: *}}
    */
   static makeApiPayload = (url, method, payload = null, contentType = null) => {
+    console.log(contentType);
     const jsonPayload = {
       url,
       method,

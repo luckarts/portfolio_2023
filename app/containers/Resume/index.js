@@ -28,8 +28,10 @@ const ResumePage = ({ edit }) => {
   useInjectSaga({ key, saga });
   const getResume = () => dispatch(getExperiencesAction());
 
-  const { stateExperiences, isLogged } = useSelector(stateSelector);
-  const { experiences } = stateExperiences;
+  const {
+    stateExperiences: { experiences },
+    isLogged
+  } = useSelector(stateSelector);
   useEffect(() => {
     getResume();
   }, []);

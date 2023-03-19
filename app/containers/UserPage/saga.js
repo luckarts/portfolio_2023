@@ -24,9 +24,11 @@ export function* handleGetUSer() {
   }
 }
 
-export function* handleUpdateUSer(user) {
+export function* handleUpdateUSer({ user }) {
   const requestUrl = ApiEndpoint.updateExperiencePath();
-  const payload = ApiEndpoint.makeApiPayload(requestUrl, PUT, user);
+  const payload = ApiEndpoint.makeApiPayload(requestUrl, PUT, user, {
+    Authorization: true
+  });
 
   yield put(asyncStartAction());
   try {

@@ -1520,6 +1520,7 @@ button:focus {
 }
 button,
 a.button {
+  cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-size: 1.125rem;
 }
@@ -1592,12 +1593,30 @@ a.button:focus {
     margin-right: 1rem;
   }
 }
+.sizeTag:is(button,a.button) span {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.sizeTag:is(button,a.button) span {
+  transition-duration: 300ms;
+}
+.sizeTag:is(button,a.button) span {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 a.button:hover,
 button.text-secondary:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(8 112 209 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.delete {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: currentColor;
 }
 .link {
   margin-top: 1rem;

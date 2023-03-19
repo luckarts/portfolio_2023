@@ -12,7 +12,8 @@ import {
   GET_EXPERIENCES,
   GET_EXPERIENCE,
   UPDATE_EXPERIENCE,
-  CREATE_EXPERIENCE
+  CREATE_EXPERIENCE,
+  DELETE_EXPERIENCE
 } from 'containers/Resume/constants';
 
 export function asyncStartAction() {
@@ -58,5 +59,12 @@ export function updateExperienceAction(experience) {
 export function newExperienceAction(experience) {
   return {
     type: CREATE_EXPERIENCE
+  };
+}
+export function deleteExperienceAction(experience_id) {
+  console.log(experience_id);
+  return {
+    type: DELETE_EXPERIENCE,
+    experience_id
   };
 }

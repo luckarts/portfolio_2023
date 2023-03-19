@@ -41,9 +41,11 @@ export function* handleGetProject({ projectName }) {
   }
 }
 
-export function* handleAddProjects(action) {
+export function* handleAddProjects({ project }) {
   const requestUrl = ApiEndpoint.createProjectPath();
-  const payload = ApiEndpoint.makeApiPayload(requestUrl, POST, action);
+  const payload = ApiEndpoint.makeApiPayload(requestUrl, POST, project, {
+    Authorization: true
+  });
 
   yield put(asyncStartAction());
   try {

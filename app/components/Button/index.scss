@@ -4,7 +4,7 @@ button:focus {
 
 button,
 a.button {
-  @apply font-portfolio text-lg focus:outline-none;
+  @apply font-portfolio text-lg focus:outline-none cursor-pointer;
   &.primary {
     @apply bg-primary text-white;
   }
@@ -29,8 +29,15 @@ a.button {
   &.sizeTag {
     @apply px-2 py-1 xsl:mx-4 sm:mx-2;
   }
+  &.sizeTag span {
+    @apply transition duration-300 ease-in-out;
+  }
 }
 a.button:hover,
 button.text-secondary:hover {
   @apply bg-secondary text-white;
+}
+
+.delete {
+  @apply fill-current h-6 w-6;
 }
