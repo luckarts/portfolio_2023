@@ -18,8 +18,6 @@ export function* handleGetProjects() {
       yield put(setProjectsAction(projects));
     }
     yield put(asyncEndAction());
-    yield put(push('/'));
-    window.location.reload();
   } catch (error) {
     yield put(asyncEndAction());
     return yield showAlert('error', error.message);
