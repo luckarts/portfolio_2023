@@ -21,15 +21,4 @@ const render = () => {
   );
 };
 
-if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept(
-    <Provider store={store}>
-      <LanguageProvider i18n={i18n}>
-        <App />
-      </LanguageProvider>
-    </Provider>,
-    render
-  ); // eslint-disable-next-line no-console
-  // reportWebVitals(console.log);
-}
 render();

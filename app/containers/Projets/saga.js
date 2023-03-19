@@ -3,8 +3,9 @@ import { GET_PROJECTS, NEW_PROJECT, UPDATE_PROJECT, GET_PROJECT } from 'containe
 import { asyncEndAction, asyncStartAction, setProjectsAction, setFormValueAction } from 'containers/Projets/actions';
 import { showAlert } from 'common/saga';
 import ApiEndpoint from 'utils/api';
-import { GET, POST } from 'utils/constants';
+import { GET, POST, PUT } from 'utils/constants';
 import request from 'utils/request';
+import { push } from 'redux-first-history';
 
 export function* handleGetProjects() {
   const requestUrl = ApiEndpoint.getProjects();
@@ -16,7 +17,9 @@ export function* handleGetProjects() {
     if (projects) {
       yield put(setProjectsAction(projects));
     }
-    return yield put(asyncEndAction());
+    yield put(asyncEndAction());
+    yield put(push('/'));
+    window.location.reload();
   } catch (error) {
     yield put(asyncEndAction());
     return yield showAlert('error', error.message);
@@ -50,7 +53,9 @@ export function* handleAddProjects(action) {
     if (projects) {
       yield put(setProjectsAction(projects));
     }
-    return yield put(asyncEndAction());
+    yield put(asyncEndAction());
+    yield put(push('/'));
+    window.location.reload();
   } catch (error) {
     yield put(asyncEndAction());
     return yield showAlert('error', error.message);
@@ -58,7 +63,10 @@ export function* handleAddProjects(action) {
 }
 export function* handleUpdateProjects({ project, id }) {
   const requestUrl = ApiEndpoint.updateProjectPath(id);
-  const payload = ApiEndpoint.makeApiPayload(requestUrl, POST, project);
+  const payload = ApiEndpoint.makeApiPayload(requestUrl, PUT, project, {
+    Authorization: true,
+    type: 'multipart/form-data'
+  });
 
   yield put(asyncStartAction());
   try {
@@ -66,7 +74,9 @@ export function* handleUpdateProjects({ project, id }) {
     if (projects) {
       yield put(setProjectsAction(projects));
     }
-    return yield put(asyncEndAction());
+    yield put(asyncEndAction());
+    yield put(push('/'));
+    window.location.reload();
   } catch (error) {
     yield put(asyncEndAction());
     return yield showAlert('error', error.message);

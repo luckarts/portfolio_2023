@@ -6,6 +6,7 @@ import ApiEndpoint from 'utils/api';
 import request from 'utils/request';
 import { showAlert, showFormattedAlert } from 'common/saga';
 import { POST } from 'utils/constants';
+import { push } from 'redux-first-history';
 
 export function* handleRegister() {
   yield put(asyncStartAction());
@@ -19,9 +20,10 @@ export function* handleRegister() {
       return yield put(enterValidationErrorAction(response.error));
     }
     localStorage.setItem('token', response.token);
-
     yield put(asyncEndAction());
-    return yield showFormattedAlert('success', 'you are registed');
+    yield showFormattedAlert('success', 'you are registed');
+    yield put(push('/'));
+    window.location.reload();
   } catch (error) {
     yield put(asyncEndAction());
     if (error.data && error.data.statusCode === 422) {

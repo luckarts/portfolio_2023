@@ -1,4 +1,6 @@
 import { StatusCodesList } from './constants';
+import axios from 'axios';
+
 /**
  * Parses the JSON returned by a network request
  *
@@ -10,7 +12,7 @@ function parseJSON(response) {
   if (response.status === 204 || response.status === 205) {
     return null;
   }
-  return response.json();
+  return response.data;
 }
 
 /**
@@ -22,11 +24,10 @@ function parseJSON(response) {
  */
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 305) {
+  if (response.status >= 200 && response.status < 300) {
     return response;
   }
   const errorMessage = StatusCodesList[response.status] || 'Unknown Error';
-  //console.error(`Error: ${errorMessage}`);
   throw new Error(errorMessage);
 }
 
@@ -38,10 +39,11 @@ function checkStatus(response) {
  * @return {object}           The response data
  */
 export default function request(options) {
-  return fetch(options.url, {
-    body: JSON.stringify(options.body),
+  return axios({
+    url: options.url,
+    method: options.method,
     headers: options.headers,
-    method: options.method
+    data: options.body
   })
     .then(checkStatus)
     .then(parseJSON);

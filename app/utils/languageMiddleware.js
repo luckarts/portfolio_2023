@@ -20,13 +20,12 @@ const i18nMiddleware =
       const language = pathname.split('/')[1];
       const allowedLanguages = ['en', 'fr'];
       let newPathname = pathname.replace(`/${language}/`, '');
-
       if (newPathname.match(/^\/+$/)) {
         newPathname = '';
-        dispatch(push(`/${defaultLanguage}/${newPathname}`));
+        dispatch(push(`/${defaultLanguage}${newPathname}/`));
       }
       if (!allowedLanguages.includes(language)) {
-        dispatch(push(`/${defaultLanguage}/${newPathname}`));
+        dispatch(push(`/${defaultLanguage}${newPathname}/`));
       }
 
       return next(action);

@@ -8,11 +8,12 @@ import {
   ADD_VALIDATION_ERROR,
   ASYNC_END,
   ASYNC_START,
-  LOGIN_PROCESS,
+  LOGIN_PROCESSS,
   SET_FORM_VALUES
 } from 'containers/LoginPage/constants';
 
 export function setFormValuesAction(formValues) {
+  console.log(formValues, 'form');
   return {
     type: SET_FORM_VALUES,
     formValues
@@ -40,6 +41,6 @@ export function enterValidationErrorAction(errors) {
 
 export function enterLoginAction() {
   return {
-    type: LOGIN_PROCESS
+    type: LOGIN_PROCESSS
   };
 }

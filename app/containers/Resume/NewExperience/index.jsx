@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ExperienceForm from '../ExperienceForm';
 import { useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { asyncStartAction, updateExperienceAction, getExperienceByCompanyAction } from 'containers/Resume/actions';
 import { enqueueAlertAction } from 'containers/AlertMessage/actions';
 import { makeSelectExperience } from 'containers/Resume/selectors';
-import { fields } from 'containers/Resume/fieldsExperiences';
+import { fields } from 'containers/Resume/fields';
 import Form from 'components/Form';
 const stateSelector = createStructuredSelector({
   formValues: makeSelectExperience()
@@ -17,6 +16,21 @@ const CreateExperience = () => {
 
   const dispatch = useDispatch();
   let { formValues } = useSelector(stateSelector);
+  const [updateFields, setFields] = useState(fields);
+  const [countExperience, setCountExperience] = useState(0);
+
+  const addNewListExp = () => {
+    setCountExperience(countExperience + 1);
+    setFields((prevList) => [
+      ...prevList,
+      {
+        data_name: 'description',
+        name: `description_${countExperience}`,
+        label: `description_${countExperience}`,
+        type: 'text'
+      }
+    ]);
+  };
 
   const onSubmit = (values) => {
     const result = {
@@ -50,7 +64,15 @@ const CreateExperience = () => {
     }
   };
 
-  return <Form fields={fields} add={true} defaultValue={formValues} title={'Add Experience'} onSubmit={onSubmit} />;
+  return (
+    <Form
+      fields={updateFields}
+      addNewListExp={addNewListExp}
+      defaultValue={formValues}
+      title={'Add Experience'}
+      onSubmit={onSubmit}
+    />
+  );
 };
 
 export default CreateExperience;

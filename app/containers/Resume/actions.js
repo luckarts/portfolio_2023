@@ -8,13 +8,11 @@ import {
   ASYNC_START,
   ASYNC_END,
   SET_EXPERIENCES,
+  SET_EXPERIENCE,
   GET_EXPERIENCES,
   GET_EXPERIENCE,
-  GET_PUBLIC_USER,
   UPDATE_EXPERIENCE,
-  CREATE_EXPERIENCE,
-  UPDATE_PUBLIC_USER,
-  SET_PUBLIC_USER
+  CREATE_EXPERIENCE
 } from 'containers/Resume/constants';
 
 export function asyncStartAction() {
@@ -35,11 +33,10 @@ export function setExperiencesAction(experiences) {
     experiences
   };
 }
-
-export function setUserAction(user) {
+export function setExperienceAction(experience) {
   return {
-    type: SET_PUBLIC_USER,
-    user
+    type: SET_EXPERIENCE,
+    experience
   };
 }
 export function getExperiencesAction() {
@@ -49,7 +46,8 @@ export function getExperiencesAction() {
 }
 export function getExperienceByCompanyAction(company) {
   return {
-    type: GET_EXPERIENCE
+    type: GET_EXPERIENCE,
+    company
   };
 }
 export function updateExperienceAction(experience) {
@@ -60,15 +58,5 @@ export function updateExperienceAction(experience) {
 export function newExperienceAction(experience) {
   return {
     type: CREATE_EXPERIENCE
-  };
-}
-export function updateUserAction() {
-  return {
-    type: UPDATE_PUBLIC_USER
-  };
-}
-export function getUserAction() {
-  return {
-    type: GET_PUBLIC_USER
   };
 }

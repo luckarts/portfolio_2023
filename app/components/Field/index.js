@@ -2,63 +2,74 @@ import React, { forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { enqueueAlertAction } from 'containers/AlertMessage/actions';
-
-const FormInputWrapper = forwardRef((props, ref) => {
+//Field
+const Field = (props) => {
   const {
     placeholder,
     label,
     onChange,
-    required = false,
     passwordInput = false,
     name,
     type,
+    rules,
     children = null,
-    value,
     disabled = false,
-    resetClass = false,
     error,
-    className,
+    className = '',
+
     defaultValue,
+    handleOnDrop,
+    register,
     variante
   } = props;
 
+  const dispatch = useDispatch();
   useEffect(() => {
     if (error) {
-      //dispatch(enqueueAlertAction({ error: error, type: 'error' }));
+      // dispatch(enqueueAlertAction({ ...error, type: 'error' }));
     }
   }, [error]);
   const isError = error === 'error' ? 'error input' : 'input ';
   return (
     <>
       {label && <label className="label">{label}</label>}
-      {variante == 'textarea' ? (
+      {type == 'file' ? (
+        <input
+          className={isError + className}
+          type={type}
+          name={name}
+          onChange={onChange}
+          defaultValue={defaultValue}
+          placeholder={placeholder}
+          {...register(name, rules)}
+          disabled={disabled}
+        />
+      ) : variante == 'textarea' ? (
         <textarea
           className={isError + className}
           type={type}
-          ref={ref}
-          value={value || defaultValue || ''}
           name={name}
-          onChange={onChange}
+          defaultValue={defaultValue}
           placeholder={placeholder}
+          {...register(name, rules)}
           disabled={disabled}
         />
       ) : (
         <input
           className={isError + className}
           type={type}
-          ref={ref}
-          value={value || defaultValue || ''}
           name={name}
-          onChange={onChange}
+          {...register(name, rules)}
+          defaultValue={defaultValue}
           placeholder={placeholder}
           disabled={disabled}
         />
       )}
     </>
   );
-});
+};
 
-FormInputWrapper.propTypes = {
+Field.propTypes = {
   error: PropTypes.object,
   min: PropTypes.number,
   control: PropTypes.object,
@@ -78,4 +89,4 @@ FormInputWrapper.propTypes = {
   required: PropTypes.bool
 };
 
-export default FormInputWrapper;
+export default Field;

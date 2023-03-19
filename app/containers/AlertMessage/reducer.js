@@ -16,12 +16,12 @@ export const initialState = {
 
 setAutoFreeze(false);
 /* eslint-disable default-case, no-param-reassign */
-const alertReducer = produce((draft, action) => {
-  switch (action.type) {
+const alertReducer = produce((draft, { type, alert: error }) => {
+  switch (type) {
     case SHOW_ALERT_MESSAGE:
       draft.show = true;
-      draft.message = action.alert.message;
-      draft.type = action.alert.type;
+      draft.message = error.message;
+      draft.type = error.type;
       draft.id = uuid();
       break;
     case ALERT_UNMOUNT:

@@ -8,7 +8,7 @@ export const fields = [
     name: 'description',
     label: 'Description',
     type: 'textarea',
-    variant: 'textarea'
+    variante: 'textarea'
   },
   {
     name: 'techno',
@@ -33,6 +33,7 @@ export const fields = [
   {
     name: 'img',
     label: 'Image',
-    type: 'file'
+    type: 'file',
+    variante: 'file'
   }
 ];

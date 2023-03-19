@@ -1,13 +1,27 @@
 export const fields = [
   {
-    name: 'description',
-    label: 'Description',
-    type: 'textarea',
-    variant: 'textarea'
+    name: 'year',
+    label: 'Year',
+    type: 'text'
   },
   {
-    name: 'cv',
-    label: 'cv',
-    type: 'file'
+    name: 'date',
+    label: 'date',
+    type: 'text'
+  },
+  {
+    name: 'job',
+    label: 'Job',
+    type: 'text'
+  },
+  {
+    name: 'company',
+    label: 'Company',
+    type: 'text'
+  },
+  {
+    name: 'linkCompany',
+    label: 'link Company',
+    type: 'text'
   }
 ];

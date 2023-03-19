@@ -1,8 +1,11 @@
 const AUTH_PATH = '/auth/login';
 const PROFILE_PATH = '/auth/profile';
 const LOGOUT_PATH = '/logout';
+export const headers = { Authorization: 'Bearer ' + localStorage.getItem('token') };
 
 export default class ApiEndpoint {
+  static getRecaptcha = () => process.env.RECAPTCHA_API_KEY;
+
   //user
   static getLoginPath = () => AUTH_PATH;
   static getProfilePath = () => PROFILE_PATH;
@@ -44,24 +47,33 @@ export default class ApiEndpoint {
       withCredentials: true,
       headers: {}
     };
-
-    if (!contentType) {
+    if (contentType && contentType.Authorization) {
+      jsonPayload.headers['Authorization'] = headers.Authorization;
+    }
+    if (contentType && contentType.type) {
+      jsonPayload.headers['Content-Type'] = contentType.type;
+    } else {
       jsonPayload.headers.Accept = 'application/json';
       jsonPayload.headers['Content-Type'] = 'application/json';
-      jsonPayload.headers['Content-Type'] = 'application/json';
-    } else {
-      jsonPayload.headers = contentType;
     }
     if (payload !== null) {
-      const formData = new FormData();
       switch (jsonPayload.headers['Content-Type']) {
         case 'application/json':
           jsonPayload.body = payload;
           break;
         case 'multipart/form-data':
+          let formData = new FormData();
+          const boundary = Math.random().toString().substr(Object.keys(payload));
+          jsonPayload.headers['Content-Type'] = `multipart/form-data;`;
           // eslint-disable-next-line no-restricted-syntax
           for (const key of Object.keys(payload)) {
-            formData.append(key, payload[key]);
+            if (key === 'cv' && payload.cv) {
+              formData.append('cv', payload.cv[0]);
+            } else if (key === 'img' && payload.img) {
+              formData.append('img', payload.img[0]);
+            } else if (payload[key] !== undefined || payload[key] !== '') {
+              formData.append(key, payload[key]);
+            }
           }
           jsonPayload.body = formData;
           break;

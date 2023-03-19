@@ -22,7 +22,6 @@ export function* showFormattedAlert(type, message) {
  * @returns {IterableIterator<*>}
  */
 export function* showAlert(type, message) {
-  console.log(message);
   return yield put(
     enqueueAlertAction({
       message,

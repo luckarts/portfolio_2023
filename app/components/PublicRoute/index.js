@@ -6,7 +6,6 @@
 
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { makeIsLoggedSelector } from 'containers/App/selectors';
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -17,7 +16,6 @@ const stateSelector = createStructuredSelector({
 });
 
 function PublicRoute({ children }) {
-  const navigate = useNavigate();
   const { isLogged } = useSelector(stateSelector);
 
   if (isLogged === null) {

@@ -34,23 +34,12 @@ const NewProject = () => {
     }
   };
 
-  const [newImage, setImg] = useState({});
-
   const handleOnDrop = (e) => {
     let file = e.target.files[0];
     let value = Object.assign(file, { preview: URL.createObjectURL(file) });
-    setImg({ img: value });
   };
 
-  return (
-    <Form
-      fields={fields}
-      defaultValue={formValues}
-      handleOnDrop={handleOnDrop}
-      title={'New Project'}
-      onSubmit={onSubmit}
-    />
-  );
+  return <Form fields={fields} handleOnDrop={handleOnDrop} title={'New Project'} onSubmit={onSubmit} />;
 };
 
 export default NewProject;

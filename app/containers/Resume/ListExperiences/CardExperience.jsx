@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
-import { CustomLink } from 'components';
+import { Button } from 'components';
 
 const propTypes = {
   className: PropTypes.string,
@@ -12,9 +12,12 @@ const CardExperience = ({ edit, date, job, link, company, list_experience }) => 
   const component = (
     <div className={'max-w-500 w-3/4 mt-4 p-4 ml-32 border border-gray-400 rounded-xlg '}>
       <h4 className="xsl:text-1-5xl  font-bold xs:text-xl">{job}</h4>
-      <CustomLink variante="a" href={link} className="text-primary text-xl font-medium xs:text-lg">
-        {company}
-      </CustomLink>
+      {!edit && (
+        <Button variante="a" href={link} className="text-primary text-xl font-medium xs:text-lg">
+          {company}
+        </Button>
+      )}
+
       <p>{date}</p>
 
       {list_experience && list_experience.length > 0 && (
@@ -30,9 +33,9 @@ const CardExperience = ({ edit, date, job, link, company, list_experience }) => 
   );
 
   return edit ? (
-    <CustomLink href={`/edit/experience/${company}`} variante="link">
+    <Button href={`/edit/experience/${company}`} variante="link">
       {component}
-    </CustomLink>
+    </Button>
   ) : (
     component
   );

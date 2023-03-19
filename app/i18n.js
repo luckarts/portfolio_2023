@@ -27,7 +27,5 @@ i18n
     }
   });
 // Gestionnaire d'erreur pour les traductions manquantes
-i18n.on('failedLoading', (lng, ns, key) => {
-  console.warn(`Traduction manquante pour la clé "${key}" dans la langue "${lng}" et le namespace "${ns}"`);
-});
+
 export default i18n;

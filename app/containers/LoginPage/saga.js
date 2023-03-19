@@ -2,20 +2,25 @@ import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import ApiEndpoint from 'utils/api';
 import request from 'utils/request';
 import { makeFormValuesSelector } from 'containers/LoginPage/selectors';
-import { LOGIN_PROCESS } from 'containers/LoginPage/constants';
+import { LOGIN_PROCESSS } from 'containers/LoginPage/constants';
 import { asyncEndAction, asyncStartAction, enterValidationErrorAction } from 'containers/LoginPage/actions';
 import { POST } from 'utils/constants';
-import { showAlert, showFormattedAlert } from 'common/saga';
+import { showAlert } from 'common/saga';
+import { push } from 'redux-first-history';
 
 export function* attemptLogin() {
-  yield put(asyncStartAction());
-  const formValues = yield select(makeFormValuesSelector());
+  const formValues = { username: 'test@test.com', password: 'Password45%' };
   const requestUrl = ApiEndpoint.getLoginPath();
   const requestPayload = ApiEndpoint.makeApiPayload(requestUrl, POST, formValues);
+
+  yield put(asyncStartAction());
+
   try {
     const sagaRequest = yield call(request, requestPayload);
     localStorage.setItem('token', sagaRequest.token);
     yield put(asyncEndAction());
+    yield put(push('/'));
+    window.location.reload();
   } catch (error) {
     yield put(asyncEndAction());
     if (error.data && error.data.statusCode === 422) {
@@ -26,5 +31,5 @@ export function* attemptLogin() {
 }
 
 export default function* loginPageSaga() {
-  yield takeLatest(LOGIN_PROCESS, attemptLogin);
+  yield takeLatest(LOGIN_PROCESSS, attemptLogin);
 }

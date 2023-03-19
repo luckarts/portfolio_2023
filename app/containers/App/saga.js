@@ -8,7 +8,7 @@ import {
 } from 'containers/App/actions';
 import { GET_PROFILE_REQUEST, LOGOUT, REFRESH_TOKEN, SET_LANGUAGE } from 'containers/App/constants';
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
-import ApiEndpoint from 'utils/api';
+import ApiEndpoint, { headers } from 'utils/api';
 import { GET, POST } from 'utils/constants';
 import request from 'utils/request';
 
@@ -18,8 +18,9 @@ import request from 'utils/request';
  */
 export function* handleProfile() {
   const requestUrl = ApiEndpoint.getProfilePath();
-  const headers = { Authorization: 'Bearer ' + localStorage.getItem('token') };
-  const payload = ApiEndpoint.makeApiPayload(requestUrl, GET, null, headers);
+  const payload = ApiEndpoint.makeApiPayload(requestUrl, GET, null, {
+    Authorization: true
+  });
 
   try {
     const response = yield call(request, payload);

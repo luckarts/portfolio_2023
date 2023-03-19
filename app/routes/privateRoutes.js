@@ -1,12 +1,12 @@
 import React from 'react';
-import PrivateRoute from 'containers/PrivateRoute';
+import PrivateRoute from 'components/PrivateRoute';
 import Projects from 'containers/Projets';
 import Profile from 'containers/Resume/Loadable';
-import MyProfile from 'containers/Resume/EditProfile';
+import MyProfile from 'containers/UserPage/EditProfile';
 import EditProject from 'containers/Projets/EditProject';
 import NewProject from 'containers/Projets/NewProject';
 import NewExperience from 'containers/Resume/NewExperience';
-import EditExperience from 'containers/Resume/EditExperience';
+import EditExperience from 'containers/Resume/EditExperience/Loadable';
 
 export const privateRoutes = [
   {
@@ -34,7 +34,7 @@ export const privateRoutes = [
     )
   },
   {
-    path: '/edit/experience/:company',
+    path: '/edit/experienceCompany',
     element: (
       <PrivateRoute>
         <EditExperience />

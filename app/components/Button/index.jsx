@@ -1,77 +1,77 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { MdModeEdit } from 'react-icons/md';
+import { IoIosAdd } from 'react-icons/io';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectLanguage } from 'containers/LanguageProvider/selectors';
+import { useSelector } from 'react-redux';
+
+const stateSelector = createStructuredSelector({
+  language: makeSelectLanguage()
+});
 
 const Button = ({
+  editIcon,
+  addIcon,
   className,
-  primary,
-  secondary,
-  textSecondary,
-  type,
-  custom,
-  children,
+  variante,
   href,
-  transparent,
+  children,
+  type,
   onClick,
-  loading,
-  hover,
-  link
+  h1,
+  link,
+  clearCss = false
 }) => {
-  const bg = primary
-    ? 'bg-primary text-white'
-    : secondary
-    ? 'bg-secondary'
-    : transparent
-    ? 'bg-transparent'
-    : 'bg-white';
-  const hov = (hover && textSecondary) || secondary ? 'hover:bg-secondary hover:text-white' : '';
-
-  if (href) {
-    return (
-      <a href={href} rel="noopener noreferrer" target="_blank" className={className}>
-        {children}
-      </a>
-    );
-  } else if (link) {
-    return (
-      <Link to={link} className={className}>
-        {children}
-      </Link>
-    );
-  } else if (onClick) {
-    return (
-      <button type={type} onClick={onClick} className={className}>
-        {children}
-      </button>
-    );
-  } else if (children) {
-    return (
-      <button type={type} className={className}>
-        {loading && <div className="spinner mr-4 mt-1" />}
-        {children}
-      </button>
-    );
-  }
+  let { language } = useSelector(stateSelector);
+  return (
+    <>
+      {variante === 'link' && editIcon ? (
+        <Link to={`/${language}${href}`} className={className}>
+          <MdModeEdit />
+          <span className="ml-2">{children}</span>
+        </Link>
+      ) : variante === 'link' && addIcon ? (
+        <Link to={`/${language}${href}`} className={className}>
+          <IoIosAdd />
+          <span className="ml-2">{children}</span>
+        </Link>
+      ) : variante === 'link' ? (
+        <Link to={`/${language}${href}`} className={className}>
+          {children}
+        </Link>
+      ) : href ? (
+        <a
+          href={`/${language}${href}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className ? className : 'link'}
+        >
+          {children}
+        </a>
+      ) : onClick ? (
+        <button type={type} onClick={onClick} className={className}>
+          {children}
+        </button>
+      ) : (
+        <button type={type} onClick={onClick} className={className}>
+          {children}
+        </button>
+      )}
+    </>
+  );
 };
-Button.propTypes = {
+const propTypes = {
+  children: PropTypes.node,
+  variante: PropTypes.string,
   href: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.element]),
-  type: PropTypes.string,
-  loading: PropTypes.bool,
-  link: PropTypes.string,
-  className: PropTypes.string,
-  primary: PropTypes.bool,
-  secondary: PropTypes.bool,
   custom: PropTypes.bool,
-  onClick: PropTypes.func,
-  border: PropTypes.bool,
-  textSecondary: PropTypes.bool,
-  textPrimary: PropTypes.bool,
-  rounded: PropTypes.bool,
-  small: PropTypes.bool,
-  large: PropTypes.bool,
-  transparent: PropTypes.bool,
-  hover: PropTypes.bool
+  addIcon: PropTypes.bool,
+  editIcon: PropTypes.bool,
+  className: PropTypes.string
 };
 
+Button.propTypes = propTypes;
 export default Button;

@@ -1,30 +1,33 @@
 import React from 'react';
-import { WrapperField } from 'components';
+import { Field } from 'components';
 
-const recursiveFields = (fields, defaultValue, handleOnDrop, control) => {
+const recursiveFields = (fields, register, defaultValue, handleOnDrop, rules, errors) => {
   return fields.map((field, id) => {
-    if (Array.isArray(field) && field.length > 0) {
-      const customFields = recursiveFields(field, defaultValue, handleOnDrop, control);
-      return customFields;
-    } else if (field.type === 'file') {
+    if (Array.isArray(field.type) && field.type.length > 0) {
+      return recursiveFields(field.type, register, defaultValue[field.name], handleOnDrop);
+    } else if (Array.isArray(field)) return <div key={id}></div>;
+    else if (field.type === 'file') {
       return (
         <div key={id} className="imgPreview">
           <img src={defaultValue.img} alt="profile" />
-          <WrapperField type="file" name="img" customChange={handleOnDrop} control={control} />
+          <Field type="file" name="img" register={register} onChange={handleOnDrop} />
         </div>
       );
     } else {
       return (
-        <WrapperField
-          key={field.name}
+        <Field
+          rules={rules[field.name]}
+          className={field.className}
           name={field.name}
           label={field.label}
-          defaultValue={defaultValue?.[field.name]}
+          defaultValue={
+            Array.isArray(defaultValue) ? defaultValue[id][field.data_name || field.name] : defaultValue?.[field.name]
+          }
           type={field.type}
-          variant={field.variant}
-          customChange={field.customChange}
-          control={control}
+          variante={field.variante}
           key={id}
+          register={register}
+          error={errors[field.name]}
         />
       );
     }

@@ -29,7 +29,7 @@ const stateSelector = createStructuredSelector({
   id: makeIdSelector()
 });
 
-export default function AlertMessage({ className }) {
+export default function AlertMessage({ className = '' }) {
   const dispatch = useDispatch();
 
   const autoDismiss = () => dispatch(autoDismissAlertAction());
@@ -41,9 +41,8 @@ export default function AlertMessage({ className }) {
   const { type, id, message, show } = useSelector(stateSelector);
 
   useEffect(() => {
-    console.log(type);
     if (message !== '') {
-      //autoDismiss();
+      autoDismiss();
     }
   }, [message]);
   if (!show) {

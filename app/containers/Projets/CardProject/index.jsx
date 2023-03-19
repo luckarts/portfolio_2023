@@ -36,24 +36,33 @@ const CardProject = ({ keyID, title, img, techno, description, linkCode, linkWeb
           <div>
             {edit && (
               <Button
-                link={title.toLowerCase()}
-                className={`text-secondary small rounded border-2 border-secondary ${linkCode && 'mr-4'}`}
+                variante="link"
+                href={'/edit/projects/' + title.toLowerCase()}
+                clearCss
+                className={`button text-secondary small rounded border-2 border-secondary ${linkCode && 'mr-4'}`}
               >
                 <span> Edit</span>
               </Button>
             )}
             {linkCode && (
-              <a href={linkCode} className={`text-secondary small rounded border-2 border-secondary`}>
+              <Button
+                variante="link"
+                href={linkCode}
+                clearCss
+                className={`button text-secondary small rounded border-2 border-secondary`}
+              >
                 <span> Code</span>
-              </a>
+              </Button>
             )}
             {linkWebsite && (
-              <a
-                className={`text-secondary small rounded border-2 border-secondary ${linkCode && 'ml-4'}`}
+              <Button
+                variante="a"
+                clearCss
+                className={`button text-secondary small rounded border-2 border-secondary ${linkCode && 'ml-4'}`}
                 href={linkWebsite}
               >
                 <span>Demo</span>
-              </a>
+              </Button>
             )}
           </div>
         </div>

@@ -1,23 +1,19 @@
-import { useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
  * Direct selector to the languageToggle state domain
  */
-const selectExperiences = (state) => {
-  return state.resumeReducer || initialState;
+const selectExperiences = ({ resumeReducer }) => {
+  return resumeReducer || initialState;
 };
 
-const selectUser = (state) => {
-  return state.resume || initialState;
-};
 /**
  * Select the language locale
  */
-const makeSelectUSer = () => createSelector(selectUser, (state) => state.user.user);
+const makeSelectExperiences = () => createSelector(selectExperiences, (state) => state);
 
-const makeSelectExperiences = () => createSelector(selectExperiences, (state) => state.experiences.experiences);
+//const makeSelectExperiences = () => createSelector(selectExperiences, (state) => state.experiences.experiences);
 const makeSelectExperience = () => createSelector(selectExperiences, (state) => state.formValues);
 
-export { selectExperiences, makeSelectUSer, selectUser, makeSelectExperience, makeSelectExperiences };
+export { selectExperiences, makeSelectExperience, makeSelectExperiences };

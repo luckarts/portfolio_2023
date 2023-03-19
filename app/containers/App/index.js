@@ -15,6 +15,7 @@ import { getProfileAction } from 'containers/App/actions';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/App/reducer';
 import { useInjectSaga } from 'utils/injectSaga';
+
 import { Route, Routes, Navigate, BrowserRouter as Router } from 'react-router-dom';
 import saga from 'containers/App/saga';
 import Navbar from 'components/Navbar';

@@ -8,5 +8,7 @@
   "/projectName": "/edit/projects/:projectName",
   "/new": "/edit/projects/new",
   "/editProfile": "/edit/profile",
+  "/edit/experienceCompany": "/edit/experience/:company",
+
   "/": "/"
 }

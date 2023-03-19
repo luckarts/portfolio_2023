@@ -22,7 +22,9 @@ module.exports = {
     text: 'var(--text-color)',
     title: 'var(--title-color)'
   },
-
+  spacing: {
+    'n1/2': '-50%'
+  },
   scale: {
     0: '0',
     90: '.9',

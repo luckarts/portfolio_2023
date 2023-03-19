@@ -5,7 +5,7 @@ export const rules = {
       message: 'email require'
     },
     type: 'email',
-    whitespace: true
+    whitespace: false
   },
 
   password: {
@@ -26,6 +26,6 @@ export const rules = {
       value: true,
       message: 'username require'
     },
-    whitespace: true
+    whitespace: false
   }
 };

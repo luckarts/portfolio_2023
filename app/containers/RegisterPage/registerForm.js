@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { enterRegisterAction, setFormValuesAction } from 'containers/RegisterPage/actions';
 
-import FormInputWrapper from 'components/FormInputWrapper';
+import Field from 'components/Field';
 import FormButtonWrapper from 'components/FormButtonWrapper';
 import AlertMessage from 'containers/AlertMessage';
 import { rules } from 'common/rules';
@@ -38,7 +38,7 @@ function RegisterForm({}) {
         <div className="formGroup">
           <Controller
             render={({ field: { onChange, onBlur, value, name, ref }, fieldState: { error }, formState }) => (
-              <FormInputWrapper
+              <Field
                 onChange={(e) => {
                   onChange(e.target.value);
                 }}
@@ -57,7 +57,7 @@ function RegisterForm({}) {
         <div className="formGroup">
           <Controller
             render={({ field: { onChange, onBlur, value, name, ref }, fieldState: { error } }) => (
-              <FormInputWrapper
+              <Field
                 ref={ref}
                 onChange={(e) => {
                   onChange(e.target.value);
@@ -76,7 +76,7 @@ function RegisterForm({}) {
         <div className="formGroup">
           <Controller
             render={({ field: { onChange, onBlur, value, name, ref }, fieldState: { error } }) => (
-              <FormInputWrapper
+              <Field
                 ref={ref}
                 onChange={(e) => {
                   onChange(e.target.value);

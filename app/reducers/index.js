@@ -11,6 +11,7 @@ import alertMessageReducer from 'containers/AlertMessage/reducer';
 import tabsReducer from 'containers/Swipeable/reducer';
 import projectsReducer from 'containers/Projets/reducer';
 import resumeReducer from 'containers/Resume/reducer';
+import userProfileReducer from 'containers/UserPage/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -24,6 +25,7 @@ export default function createReducer(injectedReducers = {}) {
     alertMessageReducer: alertMessageReducer,
     tabsReducer,
     projectsReducer,
+    userProfileReducer,
     resumeReducer: resumeReducer,
     ...injectedReducers
   });

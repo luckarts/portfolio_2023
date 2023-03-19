@@ -1,5 +1,5 @@
 .alert_container {
-  @apply px-4 py-3 rounded relative;
+  @apply px-4 py-3 rounded absolute inset-x-1/2 w-1/2 translate-x-n1/2 translate-y-n1/2;
 }
 .alert_error {
   @apply bg-red-100 border border-red-400 text-red-700;

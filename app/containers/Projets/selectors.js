@@ -14,6 +14,7 @@ const selectProjects = (state) => {
  */
 
 const makeSelectProjects = () => createSelector(selectProjects, (state) => state.projects);
+const makeSelectState = () => createSelector(selectProjects, (state) => state.isLoading);
 const makeSelectProject = () => createSelector(selectProjects, (state) => state.formValues);
 
-export { selectProjects, makeSelectProjects, makeSelectProject };
+export { selectProjects, makeSelectProjects, makeSelectProject,makeSelectState };

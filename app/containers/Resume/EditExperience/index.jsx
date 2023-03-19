@@ -1,28 +1,77 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ExperienceForm from 'containers/Resume/ExperienceForm';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { asyncStartAction, updateExperienceAction, getExperienceByCompanyAction } from 'containers/Resume/actions';
 import { enqueueAlertAction } from 'containers/AlertMessage/actions';
 import { useDispatch } from 'react-redux';
-import { makeSelectExperience } from 'containers/Resume/selectors';
+import { makeSelectExperience, makeSelectExperiences } from 'containers/Resume/selectors';
+import { Form, DataWrapper } from 'components';
+import { fields } from 'containers/Resume/fields';
+import { useInjectSaga } from 'utils/injectSaga';
+import saga from 'containers/Resume/saga';
+
+const key = 'editExperience';
+
 const stateSelector = createStructuredSelector({
-  experience: makeSelectExperience()
+  formValue: makeSelectExperience(),
+  stateExperiences: makeSelectExperiences()
 });
 
 const UpdateExperience = () => {
-  let experiences;
   let { company } = useParams();
+  useInjectSaga({ key, saga });
   const getExperience = () => dispatch(getExperienceByCompanyAction(company));
-  let { experience } = useSelector(stateSelector);
+  let { formValue, stateExperiences } = useSelector(stateSelector);
   const dispatch = useDispatch();
+  const [updateFields, setFields] = useState(fields);
+  const [experience, setExperience] = useState(formValue);
+  const [countExperience, setCountExperience] = useState(0);
+
+  const addNewListExp = () => {
+    setCountExperience(countExperience + 1);
+    setFields((prevList) => [
+      ...prevList,
+      {
+        data_name: 'description',
+        name: `description_${countExperience}`,
+        label: `description_${countExperience}`,
+        type: 'text'
+      }
+    ]);
+  };
 
   useEffect(() => {
-    getExperience();
+    if (stateExperiences.experiences.length > 0) {
+      const experience = stateExperiences.experiences.filter((experience) => experience.company === company)[0];
+      setExperience(experience);
+      addList_experience(experience);
+    } else {
+      getExperience();
+    }
   }, []);
 
-  const onSubmit = (values) => {
+  useEffect(() => {
+    if (formValue && Object.keys(formValue).length !== 0) {
+      addList_experience(formValue);
+      setExperience(formValue);
+    }
+  }, [formValue]);
+
+  const addList_experience = (experience) => {
+    if (experience.list_experience && updateFields.length == 5) {
+      setCountExperience(experience.list_experience.length);
+      let array = [];
+      experience.list_experience.forEach(function (key, i) {
+        array = [
+          ...array,
+          { data_name: 'description', name: `description_${i}`, label: `experience_${i}`, type: 'text' }
+        ];
+      });
+      setFields((prevList) => [...prevList, { name: 'list_experience', type: array }]);
+    }
+  };
+  const onFinish = (values) => {
     const result = {
       year: values.year,
       date: values.date,
@@ -33,18 +82,18 @@ const UpdateExperience = () => {
     };
     const ArrValues = Object.values(values);
     const newExp = [];
-    for (let i = 0; i < experiences.list_experience.length; i++) {
+    for (let i = 0; i < experience.list_experience.length; i++) {
       result.list_experience[i] = {
         description: ArrValues[i + 5],
-        id: experiences.list_experience[i].id
+        id: experience.list_experience[i].id
       };
     }
-    const lengthValues = Object.values(experiences).length - 2 + experiences.list_experience.length;
-    if (ArrValues.length != Object.values(experiences).length - 2) {
+    const lengthValues = Object.values(experience).length - 2 + experience.list_experience.length;
+    if (ArrValues.length != Object.values(experience).length - 2) {
       for (let i = lengthValues; i < ArrValues.length; i++) {
         newExp[i - lengthValues] = {
           description: ArrValues[i],
-          id: experiences.id
+          id: experience.id
         };
       }
     }
@@ -56,6 +105,18 @@ const UpdateExperience = () => {
     }
   };
 
-  return <ExperienceForm title={'Experience à '} initialState={experience} onSubmit={onSubmit} />;
+  return (
+    <>
+      <DataWrapper data={experience} isLoading={stateExperiences.isLoading}>
+        <Form
+          fields={updateFields}
+          defaultValue={experience}
+          title={'Edit Experience ' + company}
+          addNewListExp={addNewListExp}
+          onSubmit={onFinish}
+        />
+      </DataWrapper>
+    </>
+  );
 };
 export default UpdateExperience;

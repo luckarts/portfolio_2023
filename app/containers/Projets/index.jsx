@@ -4,7 +4,7 @@ import CardProject from './CardProject';
 import { Helmet } from 'react-helmet';
 import { makeSelectProjects } from 'containers/Projets/selectors';
 import { makeIsLoggedSelector } from 'containers/App/selectors';
-import { CustomLink } from 'components';
+import { Button, Typography } from 'components';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { getProjectsAction } from 'containers/Projets/actions';
@@ -71,37 +71,40 @@ const ProjectPage = ({ edit = false }) => {
         <meta property="og:url" content="https://bachelart.fr"></meta>
         <meta name="description" content="Projets / React / PHP / Angular" />
       </Helmet>
-      <h2 className="text-center z-10 relative text-primary afterTitle animation-FadeUp animation-once">
+      <Typography
+        variante="h2"
+        className="text-center z-10 relative text-primary afterTitle animation-FadeUp animation-once"
+      >
         {edit ? ' Edit projets' : 'Mes projets'} <span className="paintBgText "></span>
-      </h2>
+      </Typography>
 
       {edit && isLogged && (
-        <CustomLink variante="link" addIcon className="addIcon" href="/new">
+        <Button variante="link" addIcon className="addIcon link" href="/new">
           Ajout d'un nouveau projet
-        </CustomLink>
+        </Button>
       )}
       {!edit && isLogged && (
-        <CustomLink variante="link" editIcon className="editIcon" href="/edit/projects">
+        <Button variante="link" editIcon className="editIcon link" href="/edit/projects">
           Gerer mes projets
-        </CustomLink>
+        </Button>
       )}
       <div className="text-center pt-6 ">
-        <button
+        <Button
           className={`sizeTag ${tag === '' ? 'tag' : 'text-primary'} + 'animation-FadeUp animation-once `}
           onClick={() => handleClick('')}
         >
           <span>All</span>
-        </button>
+        </Button>
         {tags.length > 0 &&
           tags.map((tagg, key) => (
-            <button
+            <Button
               key={key}
               className={`sizeTag ${tagg === tag ? 'tag' : 'text-primary'}
               fadeSlide delay-${key === 0 ? 200 : (key / 5.0) * 1000 + 200}`}
               onClick={() => handleClick(tagg)}
             >
               <span>{tagg}</span>
-            </button>
+            </Button>
           ))}
       </div>
       <AlertMessage className="m-auto w-1/2 mt-4 max-w-7xl" />

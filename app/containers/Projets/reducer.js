@@ -11,15 +11,7 @@ export const initialState = {
   isLoading: false,
   errors: [],
   formValues: {
-    title: null,
-    description: null,
-    id: null,
-    techno: null,
-    linkCode: null,
-    linkWebsite: null,
-    img: null,
-    position: null
-  }
+}
 };
 
 /* eslint-disable default-case, no-param-reassign */

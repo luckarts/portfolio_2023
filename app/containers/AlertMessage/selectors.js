@@ -1,7 +1,9 @@
 import { createSelector } from 'reselect';
 import { initialState } from 'containers/AlertMessage/reducer';
 
-const selectAlertMessage = (state) => state.alertMessage || initialState;
+const selectAlertMessage = ({ alertMessage }) => {
+  return alertMessage || initialState;
+};
 
 const makeAlertMessageSelector = () => createSelector(selectAlertMessage, (substate) => substate.message);
 
