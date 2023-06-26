@@ -1,31 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-import { asyncStartAction, updateExperienceAction, getExperienceByCompanyAction } from 'containers/Resume/actions';
-import { enqueueAlertAction } from 'containers/AlertMessage/actions';
-import { useDispatch } from 'react-redux';
-import { makeSelectExperience, makeSelectExperiences } from 'containers/Resume/selectors';
 import { Form, DataWrapper } from 'components';
 import { fields } from 'containers/Resume/fields';
-import { useInjectSaga } from 'utils/injectSaga';
-import saga from 'containers/Resume/saga';
 
 const key = 'editExperience';
 
-const stateSelector = createStructuredSelector({
-  formValue: makeSelectExperience(),
-  stateExperiences: makeSelectExperiences()
-});
-
 const UpdateExperience = () => {
   let { company } = useParams();
-  useInjectSaga({ key, saga });
-  const getExperience = () => dispatch(getExperienceByCompanyAction(company));
-  let { formValue, stateExperiences } = useSelector(stateSelector);
-  const dispatch = useDispatch();
+  //const getExperience = () => dispatch(getExperienceByCompanyAction(company));
   const [updateFields, setFields] = useState(fields);
-  const [experience, setExperience] = useState(formValue);
+  const [experience, setExperience] = useState('');
   const [countExperience, setCountExperience] = useState(0);
 
   const addNewListExp = () => {

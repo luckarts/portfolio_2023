@@ -44,7 +44,15 @@ export const publicRoutes = [
     )
   },
   {
-    path: '/notFound',
+    path: '/notFounde',
+    element: (
+      <PublicRoute>
+        <NotFound />
+      </PublicRoute>
+    )
+  },
+  {
+    path: '/*',
     element: (
       <PublicRoute>
         <NotFound />

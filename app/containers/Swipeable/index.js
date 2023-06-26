@@ -1,13 +1,8 @@
-import React, { useState, Children } from 'react';
+import React, { useEffect, useState, Children, useContext } from 'react';
 import useWindowDimensions from 'utils/useWindowDimensions';
 import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
-import { makeSelectTab } from 'containers/Swipeable/selectors';
-import { setTab } from 'containers/Swipeable/actions';
-import { useDispatch } from 'react-redux';
-import { push } from 'redux-first-history';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
+import { StoreContext } from 'store/StoreContext';
 
 const propTypes = {
   current_tabs: PropTypes.number,
@@ -25,24 +20,23 @@ const pagePaths = {
 
 const NavTabs = ({ children }) => {
   const { width } = useWindowDimensions();
-  const dispatch = useDispatch();
-  const stateSelector = createStructuredSelector({
-    tab_id: makeSelectTab()
-  });
-  const { tab_id } = useSelector(stateSelector);
 
+  const { dispatch, store } = useContext(StoreContext);
+  const { tab_id } = store;
   const [trackMouse, setTrackMouse] = useState(false);
   const pagesSwipable = [0, 1, 2];
-
+  useEffect(() => {
+    console.log(tab_id);
+  }, [tab_id]);
   const onSwiped = (direction) => {
     const change = direction === RIGHT ? 1 : -1;
     const adjustedIdx = tab_id + change;
 
     if (adjustedIdx in pagePaths) {
-      push(pagePaths[adjustedIdx]);
+      // push(pagePaths[adjustedIdx]);
     }
     const newIdx = (adjustedIdx + pagesSwipable.length) % pagesSwipable.length;
-    dispatch(setTab(newIdx === 0 ? 1 : newIdx));
+    dispatch({ type: 'tabs_id', payload: newIdx === 0 ? 1 : newIdx });
   };
 
   if (width <= 500 && trackMouse === true) {

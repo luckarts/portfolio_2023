@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-import { asyncStartAction, updateExperienceAction, getExperienceByCompanyAction } from 'containers/Resume/actions';
-import { enqueueAlertAction } from 'containers/AlertMessage/actions';
-import { makeSelectExperience } from 'containers/Resume/selectors';
 import { fields } from 'containers/Resume/fields';
 import Form from 'components/Form';
-const stateSelector = createStructuredSelector({
-  formValues: makeSelectExperience()
-});
+
 const CreateExperience = () => {
   const { id } = useParams();
 
-  const dispatch = useDispatch();
-  let { formValues } = useSelector(stateSelector);
   const [updateFields, setFields] = useState(fields);
   const [countExperience, setCountExperience] = useState(0);
 

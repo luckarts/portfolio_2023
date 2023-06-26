@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { setTab } from 'containers/Swipeable/actions';
-import { useDispatch } from 'react-redux';
-import { makeSelectLanguage } from 'containers/LanguageProvider/selectors';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
+import { StoreContext } from 'store/StoreContext';
 
 const propTypes = {
   current_tabs: PropTypes.number,
   activeTab: PropTypes.func
 };
+
 const Navbar = () => {
-  const dispatch = useDispatch();
-  const stateSelector = createStructuredSelector({
-    locale: makeSelectLanguage()
-  });
-  const { locale } = useSelector(stateSelector);
+  const locale = 'en';
+  // const { locale, isLogged } =
+  const { dispatch, store } = useContext(StoreContext);
+  const { tabs_id } = store;
+
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -26,7 +23,7 @@ const Navbar = () => {
         <NavLink
           className="flex relative items-center"
           onClick={() => {
-            dispatch(setTab(0));
+            dispatch({ type: 'tabs_id', payload: 0 });
           }}
           to={`/${locale}/`}
         >
@@ -34,9 +31,22 @@ const Navbar = () => {
           <img src={'/img/LOGO7.png'} className="nav-logoName" alt="logoName" />
         </NavLink>
         <div className={`flex relative items-center`}>
+          {/* isLogged && (
+            <NavLink
+              to={`/${locale}/admin/`}
+              onClick={() => {
+                scrollTop();
+              }}
+              className={({ isActive }) => (isActive ? 'navLink active' : 'navLink')}
+            >
+              Admin
+            </NavLink>
+          )*/}
           <NavLink
             to={`/${locale}/`}
             onClick={() => {
+              // dispatch({ type: 'tabs_id', payload: 1 });
+
               scrollTop();
             }}
             className={({ isActive }) => (isActive ? 'navLink active' : 'navLink')}

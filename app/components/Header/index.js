@@ -1,7 +1,6 @@
 import React from 'react';
 import { Disclosure } from '@headlessui/react';
 
-import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
 const navigation = [
@@ -11,7 +10,6 @@ const navigation = [
 ];
 
 function HeaderComponent() {
-  const dispatch = useDispatch();
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (

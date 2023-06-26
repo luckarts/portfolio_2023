@@ -5,26 +5,24 @@
  */
 
 import React from 'react';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import reducer from 'containers/LoginPage/reducer';
-import saga from 'containers/LoginPage/saga';
 import Form from 'components/Form';
-import { useDispatch } from 'react-redux';
-import { enterLoginAction, setFormValuesAction } from 'containers/LoginPage/actions';
 import { rules } from 'common/rules';
+import { useQuery } from 'react-query';
+import ApiEndpoint from 'utils/api';
+//import { postData } from 'utils/fetchData';
 
 const key = 'login';
 
 const LoginPage = () => {
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
-  const dispatch = useDispatch();
-
-  const onFinish = async (values) => {
-    dispatch(setFormValuesAction(values));
-    dispatch(enterLoginAction());
+  const onFinish = async (values, e) => {
+    e.preventDefault();
+    try {
+      //      () => postData(); // Faire quelque chose après la soumission réussie du formulaire, par exemple réinitialiser les champs ou afficher un message de succès
+    } catch (error) {
+      // Gérer les erreurs de soumission du formulaire
+    }
   };
+
   const fields = [
     {
       name: 'username',

@@ -2,7 +2,6 @@ export { default as Swipeable } from './Swipeable';
 export { default as AlertMessage } from './AlertMessage/';
 export { default as App } from './App';
 export { default as HomePage } from './HomePage';
-export { default as LanguageProvider } from './LanguageProvider';
 export { default as LoginPage } from './LoginPage';
 export { default as NotFoundPage } from './NotFoundPage';
 export { default as PrivateRoute } from '../components/PrivateRoute';

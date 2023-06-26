@@ -3,40 +3,23 @@ import { Helmet } from 'react-helmet';
 import ListExperience from './ListExperiences';
 import BannerUser from 'containers/UserPage';
 import { Button } from 'components';
-import { makeSelectExperiences } from 'containers/Resume/selectors';
-import { makeIsLoggedSelector } from 'containers/App/selectors';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import saga from 'containers/Resume/saga';
-import reducer from 'containers/Resume/reducer';
-import { useDispatch } from 'react-redux';
-import { getExperiencesAction } from 'containers/Resume/actions';
+import { useQuery } from 'react-query';
+import { fetchData } from 'utils/fetchData';
+import ApiEndpoint from 'utils/api';
+import DataWrapper from 'components/DataWrapper';
 
-import AlertMessage from 'containers/AlertMessage';
-
-const stateSelector = createStructuredSelector({
-  stateExperiences: makeSelectExperiences(),
-  isLogged: makeIsLoggedSelector()
-});
 const key = 'resume';
-const ResumePage = ({ edit }) => {
+const ResumePage = ({ edit, isLogged }) => {
   let id, lastIdExp;
-  const dispatch = useDispatch();
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
-  const getResume = () => dispatch(getExperiencesAction());
 
-  const {
-    stateExperiences: { experiences },
-    isLogged
-  } = useSelector(stateSelector);
   useEffect(() => {
-    getResume();
+    // getResume();
   }, []);
-
-  id = experiences && experiences.length > 0 && experiences.length;
+  const { data, isLoading, error } = useQuery('getResume', () => fetchData(ApiEndpoint.getExperiencesPath()));
+  useEffect(() => {
+    console.log(data, isLoading, error);
+  }, [data, isLoading]);
+  //  id = experiences && experiences.length > 0 && experiences.length;
   lastIdExp = 1;
   return (
     <>
@@ -60,9 +43,11 @@ const ResumePage = ({ edit }) => {
           Gerer mes experiences
         </Button>
       )}
-      <AlertMessage className="m-auto w-1/2 mt-4 max-w-7xl " />
-
-      <ListExperience edit={edit} listExperience={experiences} />
+      <DataWrapper data={data?.listExperiences} isLoading={isLoading} error={error}>
+        <>
+          <ListExperience edit={edit} listExperience={data?.listExperiences} />
+        </>
+      </DataWrapper>
     </>
   );
 };

@@ -2,38 +2,21 @@ import React, { useEffect } from 'react';
 import parse from 'html-react-parser';
 import BannerProfile from './BannerProfile';
 import { Button } from 'components';
-import { makeSelectUSer } from 'containers/UserPage/selectors';
-import { makeIsLoggedSelector } from 'containers/App/selectors';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import saga from 'containers/UserPage/saga';
-import reducer from 'containers/UserPage/reducer';
-import { useDispatch } from 'react-redux';
-import { getUserAction } from 'containers/UserPage/actions';
-
-const stateSelector = createStructuredSelector({
-  user: makeSelectUSer(),
-  isLogged: makeIsLoggedSelector()
-});
+import { useQuery } from 'react-query';
+import { fetchData } from 'utils/fetchData';
+import ApiEndpoint from 'utils/api';
 
 const key = 'User';
-const BannerUser = ({ edit }) => {
-  const dispatch = useDispatch();
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
-
-  const getUser = () => dispatch(getUserAction());
-  const { user, isLogged } = useSelector(stateSelector);
+const BannerUser = ({ edit, isLogged }) => {
+  const { data, isLoading, error } = useQuery('getUser', () => fetchData(ApiEndpoint.getUserPublicPath()));
 
   useEffect(() => {
-    getUser();
-  }, []);
+    console.log(data);
+  }, [data]);
 
   return (
     <>
-      <BannerProfile user={user} />
+      <BannerProfile user={data} />
 
       {!edit && isLogged && (
         <Button editIcon variante="link" href="/edit/profile" className="link">
@@ -41,13 +24,13 @@ const BannerUser = ({ edit }) => {
         </Button>
       )}
 
-      {user.description && (
+      {data?.user.description && (
         <div className="w-3/5 sm:w-11/12 m-auto animation-FadeUp animation-once delay-1000">
           <h3 className="pt-2">Information</h3>
           <div className="flex justify-between">
             <img className="resumeSvg text-center m-auto" src="/img/experiences.png" />
 
-            <p className="pt-2 ">{parse(user.description)}</p>
+            <p className="pt-2 ">{parse(data?.user.description)}</p>
           </div>
         </div>
       )}

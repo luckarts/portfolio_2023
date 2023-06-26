@@ -5,34 +5,22 @@
  */
 
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { enterRegisterAction, setFormValuesAction } from 'containers/RegisterPage/actions';
 
 import Field from 'components/Field';
 import FormButtonWrapper from 'components/FormButtonWrapper';
-import AlertMessage from 'containers/AlertMessage';
 import { rules } from 'common/rules';
 import { useForm, Controller } from 'react-hook-form';
-import { enqueueAlertAction } from 'containers/AlertMessage/actions';
 import { Link } from 'react-router-dom';
 
 function RegisterForm({}) {
-  const dispatch = useDispatch();
-
   const onFinish = async (values) => {
     try {
-      dispatch(setFormValuesAction(values));
-      dispatch(enterRegisterAction());
-    } catch (error) {
-      dispatch(enqueueAlertAction({ error: error, type: 'error' }));
-    }
+    } catch (error) {}
   };
 
   const { handleSubmit, control } = useForm();
   return (
     <form className="form" onSubmit={handleSubmit(onFinish)} name="register-form">
-      <AlertMessage />
       <div className="formContainer">
         <h1 className="h1 mb-4 text-title">Create your account</h1>
         <div className="formGroup">

@@ -21,6 +21,7 @@ export const privateRoutes = [
     path: '/edit/projects',
     element: (
       <PrivateRoute>
+        {' '}
         <Projects edit={true} />
       </PrivateRoute>
     )

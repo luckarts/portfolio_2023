@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-import { getProjectAction, newProjectAction, asyncStartAction } from 'containers/Projets/actions';
-import { enqueueAlertAction } from 'containers/AlertMessage/actions';
-import { useDispatch } from 'react-redux';
-import { makeSelectProject } from 'containers/Projets/selectors';
 import { fields } from 'containers/Projets/fields';
 import { Form } from 'components';
-import saga from 'containers/Projets/saga';
-
-const stateSelector = createStructuredSelector({
-  formValues: makeSelectProject()
-});
 
 const NewProject = () => {
-  let { formValues } = useSelector(stateSelector);
-  const dispatch = useDispatch();
-
   const onSubmit = (values) => {
     let formdata = new FormData();
     for (let key in values) {
@@ -27,11 +13,7 @@ const NewProject = () => {
       }
     }
     try {
-      dispatch(newProjectAction(values));
-      dispatch(asyncStartAction());
-    } catch (error) {
-      dispatch(enqueueAlertAction({ error: error, type: 'error' }));
-    }
+    } catch (error) {}
   };
 
   const handleOnDrop = (e) => {

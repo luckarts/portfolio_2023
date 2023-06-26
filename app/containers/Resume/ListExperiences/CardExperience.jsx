@@ -2,8 +2,6 @@ import React from 'react';
 import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
 import { Button } from 'components';
-import { useDispatch } from 'react-redux';
-import { deleteExperienceAction } from 'containers/Resume/actions';
 
 const propTypes = {
   className: PropTypes.string,
@@ -11,9 +9,8 @@ const propTypes = {
 };
 
 const CardExperience = ({ edit, date, job, link, company, list_experience }) => {
-  const dispatch = useDispatch();
   const deleteExperience = (experience_id) => {
-    dispatch(deleteExperienceAction(experience_id));
+    // dispatch(deleteExperienceAction(experience_id));
   };
   return (
     <div className={'max-w-500 w-3/4 mt-4 p-4 ml-32 border border-gray-400 rounded-xlg '}>

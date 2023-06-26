@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useWindowDimensions from 'utils/useWindowDimensions';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 import { Button, LoadingIndicator } from 'components';
-import { useDispatch } from 'react-redux';
-import { setTab } from 'containers/Swipeable/actions';
+import { StoreContext } from 'store/StoreContext';
 
 const propTypes = {
   setTab: PropTypes.func
@@ -13,18 +12,18 @@ const propTypes = {
 const Preloader = () => {
   const { width } = useWindowDimensions();
   const [hidden, setHidden] = useState(false);
-  const dispatch = useDispatch();
   const nodeRef = useRef(null);
+  const { dispatch } = useContext(StoreContext);
 
   useEffect(() => {
     const timer = setInterval(() => {
       if (width >= 1024) {
-        dispatch(setTab(1));
+        dispatch({ type: 'tabs_id', payload: 1 });
         setHidden(true);
       }
     }, 4000);
     return () => clearInterval(timer);
-  }, [dispatch, setTab, width]);
+  }, [, dispatch, width]);
 
   return (
     <>
@@ -37,7 +36,7 @@ const Preloader = () => {
         <div
           className="flex overflow-y-hidden h-screen relative w-full"
           onClick={() => {
-            dispatch(setTab(1));
+            dispatch({ type: 'tabs_id', payload: { tab_id: 1 } });
             setHidden(true);
           }}
         >

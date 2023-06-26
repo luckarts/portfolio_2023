@@ -1,16 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { MdModeEdit } from 'react-icons/md';
 import { IoIosAdd } from 'react-icons/io';
-import { createStructuredSelector } from 'reselect';
-import { makeSelectLanguage } from 'containers/LanguageProvider/selectors';
-import { useSelector } from 'react-redux';
-
-const stateSelector = createStructuredSelector({
-  language: makeSelectLanguage()
-});
+import { LanguageContext } from 'containers/LanguageProvider/LanguageContext';
 
 const Button = ({
   editIcon,
@@ -25,7 +19,7 @@ const Button = ({
   link,
   clearCss = false
 }) => {
-  let { language } = useSelector(stateSelector);
+  const { language } = useContext(LanguageContext);
   return (
     <>
       {variante === 'link' && editIcon ? (

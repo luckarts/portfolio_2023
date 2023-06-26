@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import CardProject from './CardProject';
 import { Helmet } from 'react-helmet';
-import { makeSelectProjects } from 'containers/Projets/selectors';
-import { makeIsLoggedSelector } from 'containers/App/selectors';
-import { Button, Typography } from 'components';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-import { getProjectsAction } from 'containers/Projets/actions';
-import { useDispatch } from 'react-redux';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import saga from 'containers/Projets/saga';
-import reducer from 'containers/Projets/reducer';
-import AlertMessage from 'containers/AlertMessage';
-
+import { Button, Typography, Card } from 'components';
+import { useQuery } from 'react-query';
+import { fetchData } from 'utils/fetchData';
+import ApiEndpoint from 'utils/api';
+import DataWrapper from 'components/DataWrapper';
 const propTypes = {
   editIcon: PropTypes.bool,
   edit: PropTypes.bool,
@@ -25,20 +16,10 @@ const propTypes = {
 };
 const key = 'login';
 
-const stateSelector = createStructuredSelector({
-  isLogged: makeIsLoggedSelector(),
-  projects: makeSelectProjects()
-});
-
-const ProjectPage = ({ edit = false }) => {
+const ProjectPage = ({ edit = false, isLogged }) => {
   const tags = ['React', 'TDD', 'NextJS', 'MongoDb', 'GraphQL'];
   const [tag, setTag] = useState('');
-  const dispatch = useDispatch();
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
-  const getProjects = () => dispatch(getProjectsAction());
 
-  let { projects, isLogged } = useSelector(stateSelector);
   const [filterProject, setFilterProject] = useState([]);
 
   const scrollTop = () => {
@@ -50,18 +31,18 @@ const ProjectPage = ({ edit = false }) => {
     scrollTop();
   };
 
-  useEffect(() => {
-    getProjects();
-  }, []);
+  const { data, isLoading, error } = useQuery('getProjets', () => fetchData(ApiEndpoint.getProjects()));
 
   useEffect(() => {
-    if (tag != '') {
-      const filterProject = projects.filter((projet) => projet.techno?.split('/').includes(`${tag}`));
-      setFilterProject(filterProject);
-    } else {
-      setFilterProject(projects);
+    if (!isLoading) {
+      if (tag != '') {
+        const filterProject = data.projects.filter((projet) => projet.techno?.split('/').includes(`${tag}`));
+        setFilterProject(filterProject);
+      } else {
+        setFilterProject(data.projects);
+      }
     }
-  }, [projects, tag]);
+  }, [data?.projects, tag]);
 
   return (
     <>
@@ -83,11 +64,7 @@ const ProjectPage = ({ edit = false }) => {
           Ajout d'un nouveau projet
         </Button>
       )}
-      {!edit && isLogged && (
-        <Button variante="link" editIcon className="editIcon link" href="/edit/projects">
-          Gerer mes projets
-        </Button>
-      )}
+
       <div className="text-center pt-6 ">
         <Button
           className={`sizeTag ${tag === '' ? 'tag' : 'text-primary'} + 'animation-FadeUp animation-once `}
@@ -107,17 +84,20 @@ const ProjectPage = ({ edit = false }) => {
             </Button>
           ))}
       </div>
-      <AlertMessage className="m-auto w-1/2 mt-4 max-w-7xl" />
       <div style={{ minHeight: '500px' }}>
         <div className="max-w-screen-xl flex flex-wrap  mb-4 xs:mb-12 mx-auto md:p-12 sm:p-6 CardsDelay">
-          {filterProject?.map((projet, key) => (
-            <div
-              className={`md:w-1/2 sm:w-full fadeSlide delay-${key === 0 ? 200 : (key / 5.0) * 1000 + 200}`}
-              key={projet.id}
-            >
-              <CardProject keyID={key} {...projet} edit={edit} />
-            </div>
-          ))}
+          <DataWrapper data={filterProject}>
+            <>
+              {filterProject?.map((projet, key) => (
+                <div
+                  className={`md:w-1/2 sm:w-full fadeSlide delay-${key === 0 ? 200 : (key / 5.0) * 1000 + 200}`}
+                  key={projet.id}
+                >
+                  <Card keyID={key} {...projet} edit={edit} />
+                </div>
+              ))}
+            </>
+          </DataWrapper>
         </div>
       </div>
     </>
