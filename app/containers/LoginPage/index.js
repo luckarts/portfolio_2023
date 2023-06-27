@@ -8,7 +8,7 @@ import React from 'react';
 import Form from 'components/Form';
 import { rules } from 'common/rules';
 import { useQuery } from 'react-query';
-import ApiEndpoint from 'utils/api';
+import ApiEndpoint from 'utils/apis';
 //import { postData } from 'utils/fetchData';
 
 const key = 'login';

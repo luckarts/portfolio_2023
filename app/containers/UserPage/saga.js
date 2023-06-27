@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { GET_PUBLIC_USER, UPDATE_PUBLIC_USER } from 'containers/UserPage/constants';
 import { asyncEndAction, asyncStartAction, setUserAction } from 'containers/UserPage/actions';
 import { showAlert } from 'common/saga';
-import ApiEndpoint from 'utils/api';
+import ApiEndpoint from 'utils/apis';
 import { GET, POST, PUT } from 'utils/constants';
 import request from 'utils/request';
 import { push } from 'redux-first-history';

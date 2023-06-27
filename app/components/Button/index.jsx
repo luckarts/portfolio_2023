@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { MdModeEdit } from 'react-icons/md';
 import { IoIosAdd } from 'react-icons/io';
-import { LanguageContext } from 'containers/LanguageProvider/LanguageContext';
+import { I18nContext } from 'containers/I18nContext/I18nContext';
 
 const Button = ({
   editIcon,
@@ -19,7 +19,7 @@ const Button = ({
   link,
   clearCss = false
 }) => {
-  const { language } = useContext(LanguageContext);
+  const { language } = useContext(I18nContext);
   return (
     <>
       {variante === 'link' && editIcon ? (

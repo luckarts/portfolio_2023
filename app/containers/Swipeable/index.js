@@ -25,9 +25,7 @@ const NavTabs = ({ children }) => {
   const { tab_id } = store;
   const [trackMouse, setTrackMouse] = useState(false);
   const pagesSwipable = [0, 1, 2];
-  useEffect(() => {
-    console.log(tab_id);
-  }, [tab_id]);
+
   const onSwiped = (direction) => {
     const change = direction === RIGHT ? 1 : -1;
     const adjustedIdx = tab_id + change;

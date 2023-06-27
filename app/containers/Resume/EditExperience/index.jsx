@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Form, DataWrapper } from 'components';
 import { fields } from 'containers/Resume/fields';
+//import { getExperiences } from 'utils/api';
 
 const key = 'editExperience';
 
 const UpdateExperience = () => {
   let { company } = useParams();
-  //const getExperience = () => dispatch(getExperienceByCompanyAction(company));
   const [updateFields, setFields] = useState(fields);
   const [experience, setExperience] = useState('');
   const [countExperience, setCountExperience] = useState(0);

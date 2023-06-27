@@ -21,8 +21,7 @@ import { useTranslation } from 'react-i18next';
 import LoadingIndicator from 'components/LoadingIndicator';
 import Preloader from 'containers/Home';
 import CookieService from 'services/cookie.service';
-import { MiddlewareLanguage } from './MiddlewareLanguage';
-const key = 'global';
+import MiddlewareLanguage from './MiddlewareLanguage';
 
 export default function App() {
   const { t, i18n, ready } = useTranslation();

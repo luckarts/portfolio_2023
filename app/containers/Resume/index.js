@@ -4,23 +4,21 @@ import ListExperience from './ListExperiences';
 import BannerUser from 'containers/UserPage';
 import { Button } from 'components';
 import { useQuery } from 'react-query';
-import { fetchData } from 'utils/fetchData';
-import ApiEndpoint from 'utils/api';
 import DataWrapper from 'components/DataWrapper';
+import { getExperiences } from 'utils/api';
 
-const key = 'resume';
 const ResumePage = ({ edit, isLogged }) => {
   let id, lastIdExp;
 
-  useEffect(() => {
-    // getResume();
-  }, []);
-  const { data, isLoading, error } = useQuery('getResume', () => fetchData(ApiEndpoint.getExperiencesPath()));
+  const { data, isLoading, error } = useQuery('getResume', () => getExperiences());
+
   useEffect(() => {
     console.log(data, isLoading, error);
   }, [data, isLoading]);
+
   //  id = experiences && experiences.length > 0 && experiences.length;
   lastIdExp = 1;
+
   return (
     <>
       <Helmet>

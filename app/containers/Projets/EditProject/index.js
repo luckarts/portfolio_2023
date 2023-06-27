@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { fetchData } from 'utils/fetchData';
-import ApiEndpoint from 'utils/api';
 import { useParams } from 'react-router-dom';
 import { fields } from 'containers/Projets/fields';
 import { Form, DataWrapper } from 'components';
+import { getProjetByName } from 'utils/api';
 
 const EditProject = () => {
   const { projectName } = useParams();
-  const { data, isLoading, error } = useQuery('getProjetName', () =>
-    fetchData(ApiEndpoint.getProjectName(projectName))
-  );
+  const { data, isLoading, error } = useQuery('getProjetName', () => getProjetByName(projectName));
 
   const onFinish = async (values) => {
     try {

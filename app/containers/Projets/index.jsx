@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { Button, Typography, Card } from 'components';
 import { useQuery } from 'react-query';
-import { fetchData } from 'utils/fetchData';
-import ApiEndpoint from 'utils/api';
+import { getProjets } from 'utils/api';
 import DataWrapper from 'components/DataWrapper';
 const propTypes = {
   editIcon: PropTypes.bool,
@@ -31,9 +30,10 @@ const ProjectPage = ({ edit = false, isLogged }) => {
     scrollTop();
   };
 
-  const { data, isLoading, error } = useQuery('getProjets', () => fetchData(ApiEndpoint.getProjects()));
+  const { data, isLoading, error } = useQuery('getProjets', () => getProjets());
 
   useEffect(() => {
+    console.log(data);
     if (!isLoading) {
       if (tag != '') {
         const filterProject = data.projects.filter((projet) => projet.techno?.split('/').includes(`${tag}`));

@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form';
 import recursiveFields from 'components/Form/recursiveFields';
 import { Typography } from 'components';
 import ReCAPTCHA from 'react-google-recaptcha';
-import ApiEndpoint from 'utils/api';
-import { AlertMessage } from 'containers';
+import Notification from 'containers/Notification/index';
 export default function Form({
   title,
   rules,
@@ -23,7 +22,7 @@ export default function Form({
 
   return (
     <>
-      <AlertMessage />
+      <Notification />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="mt-12 sm:mt-8 mb-16 rounded-xlg  w-3/5 max-w-xlg sm:w-11/12 m-auto border border-gray-300 bg-white p-8"

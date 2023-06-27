@@ -1,5 +1,5 @@
 export { default as Swipeable } from './Swipeable';
-export { default as AlertMessage } from './AlertMessage/';
+//export { default as AlertMessage } from './AlertMessage/';
 export { default as App } from './App';
 export { default as HomePage } from './HomePage';
 export { default as LoginPage } from './LoginPage';

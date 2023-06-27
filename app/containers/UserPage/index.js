@@ -3,15 +3,14 @@ import parse from 'html-react-parser';
 import BannerProfile from './BannerProfile';
 import { Button } from 'components';
 import { useQuery } from 'react-query';
-import { fetchData } from 'utils/fetchData';
-import ApiEndpoint from 'utils/api';
+import { getUserPublic } from 'utils/api';
 
 const key = 'User';
 const BannerUser = ({ edit, isLogged }) => {
-  const { data, isLoading, error } = useQuery('getUser', () => fetchData(ApiEndpoint.getUserPublicPath()));
+  const { data, isLoading, error } = useQuery('getUser', () => getUserPublic());
 
   useEffect(() => {
-    console.log(data);
+    console.log(data, error, 'user');
   }, [data]);
 
   return (

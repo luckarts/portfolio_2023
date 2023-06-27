@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { StoreContext } from 'store/StoreContext';
+import { I18nContext } from 'containers/I18nContext/I18nContext';
 
 const propTypes = {
   current_tabs: PropTypes.number,
@@ -11,6 +12,7 @@ const propTypes = {
 const Navbar = () => {
   const locale = 'en';
   // const { locale, isLogged } =
+  const { language } = useContext(I18nContext);
   const { dispatch, store } = useContext(StoreContext);
   const { tabs_id } = store;
 
@@ -25,7 +27,7 @@ const Navbar = () => {
           onClick={() => {
             dispatch({ type: 'tabs_id', payload: 0 });
           }}
-          to={`/${locale}/`}
+          to={`/${language}/`}
         >
           <img src={'/img/logo8.png'} className="nav-logo" alt="logo" />
           <img src={'/img/LOGO7.png'} className="nav-logoName" alt="logoName" />
@@ -43,7 +45,7 @@ const Navbar = () => {
             </NavLink>
           )*/}
           <NavLink
-            to={`/${locale}/`}
+            to={`/${language}/`}
             onClick={() => {
               // dispatch({ type: 'tabs_id', payload: 1 });
 
@@ -54,7 +56,7 @@ const Navbar = () => {
             Projets
           </NavLink>
           <NavLink
-            to={`/${locale}/luc_bachelerie`}
+            to={`/${language}/luc_bachelerie`}
             className={({ isActive }) => (isActive ? 'navLink active' : 'navLink')}
             onClick={() => {
               scrollTop();
