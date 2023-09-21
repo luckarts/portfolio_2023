@@ -3,9 +3,9 @@ services:
   app:
     build: .
     environment:
-      - PORT=8080
+      - PORT=5000
     ports:
-      - '8080:8080'
+      - '5000:5000'
     volumes:
       - ./server:/opt/app/server
       - ./src:/opt/app/src

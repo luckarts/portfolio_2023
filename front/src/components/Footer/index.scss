@@ -1,0 +1,30 @@
+footer > img,
+.resumeSvg img {
+  width: 30vw;
+  height: auto;
+}
+.resumeSvg {
+  @apply flex-row-reverse sm:flex-wrap sm:flex-col-reverse;
+}
+.resumeSvg img {
+  @apply max-w-300 min-w-300 sm:w-full sm:max-w-200 sm:min-w-200;
+}
+.resumeSvg p {
+  max-width: 500px;
+  @apply sm:w-full sm:max-w-full;
+}
+
+.paintBgText {
+  @apply bg-secondary opacity-30;
+}
+.paintBgText {
+  z-index: -2;
+  position: absolute;
+  top: 15px;
+  left: 2px;
+  bottom: 15px;
+  right: 0;
+  width: 250px;
+  margin: auto;
+  transform: scaleX(1.05) scaleY(0.55) skewY(-14deg);
+}

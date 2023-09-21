@@ -1,0 +1,21 @@
+.alert_container {
+  @apply px-4 py-3 top-150 z-20 absolute inset-x-1/2 w-1/2 translate-x-n1/2 translate-y-n1/2  animation-FadeRight animation-once;
+  > div {
+    @apply relative rounded flex items-center p-4 mb-4 text-sm border;
+  }
+}
+.alert_error {
+  @apply bg-red-100  border-red-400 text-red-700 relative p-2 mb-4 flex justify-between;
+}
+.alert_svg {
+  @apply fill-current h-6 w-6;
+}
+.alert_success {
+  @apply bg-green-100  border-green-400 text-green-700;
+}
+.text_error {
+  @apply text-red-500;
+}
+.text_success {
+  @apply text-green-500;
+}

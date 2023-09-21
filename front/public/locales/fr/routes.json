@@ -1,0 +1,12 @@
+{
+  "/register": "/incription",
+  "/login": "/connection",
+  "/dashboard": "/admin",
+  "/notfound": "/404",
+  "/luc_bachelerie": "/luc_bachelerie",
+  "/edit/project": "/edit/project/:id",
+  "/new": "/projet/ajout",
+  "/editProfile": "/edit/profile",
+  "/edit/experienceCompany": "/edit/experience/:company",
+  "/": "/"
+}
