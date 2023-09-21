@@ -1,23 +1,28 @@
 # React Server Side Rendering Portfolio
 
-# Stack
 
-- <https://nodejs.org/en/>
-- <https://react-redux.js.org/>
-- <https://redux-saga.js.org/>
-- <https://fr.reactjs.org/docs/hooks-intro.html/>
-- <https://testing-library.com/>
-- <https://tailwindcss.com/> with purge css unused
-- <https://webpack.js.org/> custom build the app
-- <https://www.docker.com/> for production with multi-stage and compress Image sizes
+Register 
+[x] Create a React components for the login form and send Data 
+[x] Create Reducers Actions et selectors and store token 
+[x] Verification of user credentials 
+[x] Managing authentication errors on the back end
 
-# Features
+ Login 
+ [x] Create a React components for the login form and send Data
+ [x] Create Reducers Actions et selectors and store Token 
+ [x] Verification of user credentials 
+ [x] Managing authentication errors on the back end
 
-- PWA
-- Login user admin
-- Add new project
-- Edit Projects
-- Add new experience
-- Edit Experiences
-- Edit User admin and edit cv
-- Add new illustration
+ Dashboard_user 
+ [x] Create Header 
+ [x] Create guards to protect routes that require authentication 
+ [x] Create Reducers Actions et selectors and to get User 
+ [x] Set up the logout system [x] Create Dashboard Components
+
+[x] Translation with i18next 
+[x] add files translation in json for text and title 
+[x] add files translation in json for error system 
+[x] add files translation in json for routes
+
+[x] Refactoring Renplacement de Redux en Context
+[x] Refactoring Typescript
