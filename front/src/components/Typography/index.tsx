@@ -1,8 +1,5 @@
-interface TypographyProps {
-  className?: string;
-  variante: 'h1' | 'h2' | 'h3' | 'h4' | 'p';
-  children: React.ReactNode;
-}
+import React from 'react';
+
 export default function Typography({ className, variante, children }: TypographyProps) {
   return (
     <>
@@ -19,4 +16,9 @@ export default function Typography({ className, variante, children }: Typography
       )}
     </>
   );
+}
+interface TypographyProps {
+  className?: string;
+  variante: 'h1' | 'h2' | 'h3' | 'h4' | 'p';
+  children: React.ReactNode;
 }

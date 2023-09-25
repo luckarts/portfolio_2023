@@ -2,7 +2,7 @@ import { useState, Children } from 'react';
 import useWindowDimensions from 'utils/useWindowDimensions';
 import { useSwipeable } from 'react-swipeable';
 import { useStore } from 'src/contexts';
-import { OnlyChildrenProps } from 'src/containers/type';
+import { OnlyChildrenProps } from 'src/type';
 
 const RIGHT = -1;
 const LEFT = 1;

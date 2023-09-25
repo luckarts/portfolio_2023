@@ -3,7 +3,7 @@ import { I18nContextProvider } from '../../contexts/I18nContext/I18nContextProvi
 import { NotificationContextProvider } from '../../contexts/Notification/NotificationContextProvider';
 import { StoreContextProvider } from '../../contexts/store/StoreContextProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { OnlyChildrenProps } from 'containers/type';
+import { OnlyChildrenProps } from 'src/type';
 
 const WrapperContext = ({ children }: OnlyChildrenProps) => {
   const queryClient = new QueryClient();

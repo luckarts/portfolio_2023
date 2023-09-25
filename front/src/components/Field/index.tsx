@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import { useCustomForm } from 'src/contexts';
+import { useCustomForm } from '../../contexts';
 import { FieldErrorsImpl } from 'react-hook-form';
 import { RulesType } from 'src/common/rules/type';
 

@@ -17,6 +17,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      jest: resolve(projectRootDir, 'jest'),
       containers: resolve(projectRootDir, 'src/containers'),
       components: resolve(projectRootDir, 'src/components'),
       utils: resolve(projectRootDir, 'src/utils'),

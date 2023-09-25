@@ -4,10 +4,10 @@
  *
  */
 
-import { OnlyChildrenProps } from 'containers/type';
+import { OnlyChildrenProps } from 'src/type';
 
 function PublicRoute({ children }: OnlyChildrenProps) {
-  return children;
+  return <>{children}</>;
 }
 
 export default PublicRoute;

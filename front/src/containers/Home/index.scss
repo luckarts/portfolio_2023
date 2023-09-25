@@ -2,25 +2,35 @@
   animation: FadeSize 0.75s cubic-bezier(0.17, 0.88, 0.32, 1.27) 0.75s both;
 }
 .pageLoader {
+  transform-origin: center;
   overflow-y: hidden;
+  height: 100%;
+
+  width: 100%;
+  // transform: translate(-50%, -50%);
 
   @apply w-full top-0 flex text-center;
 }
 .pageLoader.active {
   animation: pageLoader 1s forwards;
-  //transform: translate(-50%, -50%);
 }
 
 @keyframes pageLoader {
   0% {
-    transform: translate(0, 0);
-    height: 100%;
+    //transform: scale(1);
+    z-index: 9999;
+    // transform: translate(0, 0);
+    opacity: 1;
   }
   90% {
-    transform: translate(0, -120%);
+    // transform: scale(0, 0%);
+    opacity: 0;
+    z-index: -1;
+
+    // transform: translate(0, -120%);
   }
   100% {
-    transform: translate(0, -120%);
+    // transform: translate(0, -120%);
     display: none;
   }
 }

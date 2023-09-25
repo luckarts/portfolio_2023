@@ -1,6 +1,0 @@
-{
-  "roots": ["<rootDir>"],
-  "testPathIgnorePatterns": ["/node_modules/", "/public/"],
-  "testRegex": "((\\.|/*.)(test))\\.js?$",
-  "testEnvironment": "jsdom"
-}

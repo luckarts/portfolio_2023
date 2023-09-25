@@ -8,7 +8,7 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useI18n, useAdmin } from 'src/contexts';
-import { OnlyChildrenProps } from 'src/containers/type';
+import { OnlyChildrenProps } from 'src/type';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -30,7 +30,7 @@ function PrivateRoute({ children }: OnlyChildrenProps) {
     redirect();
   }, [isAdmin]);
 
-  return isLoading ? <LoadingIndicator /> : children;
+  return isLoading ? <LoadingIndicator /> : <>{children}</>;
 }
 
 export default PrivateRoute;

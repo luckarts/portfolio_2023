@@ -1,9 +1,10 @@
-import { useReducer, ReactElement, useState, ReactNode } from 'react';
+import { useReducer, ReactElement, useEffect, useState, ReactNode } from 'react';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { recordReducer } from 'contexts/RecordContext/reducer';
 import { useQuery, useQueryClient } from 'react-query';
 import { RecordContextType } from './type';
 import { RecordContext } from './RecordContext';
+import { useNotification } from '../Notification';
 
 interface RecordContextProps<T = {}> {
   children: ReactNode | ((data: T) => ReactElement);
@@ -14,7 +15,10 @@ interface RecordContextProps<T = {}> {
 export function RecordProvider<T>({ children, name, callback }: RecordContextProps<T>) {
   const queryClient = useQueryClient();
   const [localData, setLocalData] = useState({});
+  const { setNotifications } = useNotification();
+
   const [state, dispatch] = useReducer(recordReducer<T>, {});
+
   const { isLoading, isError } = useQuery<T, Error>(name, callback, {
     onSuccess: (data) => {
       // Stocker les données dans le cache de React Query
@@ -26,10 +30,17 @@ export function RecordProvider<T>({ children, name, callback }: RecordContextPro
     retry: false
   });
 
-  //const localData = useRecord(name);
+  useEffect(() => {
+    if (!name) {
+      throw new Error('a name of callback to get Data is required');
+    }
+  }, [name]);
+
+  useEffect(() => {
+    if (isError) setNotifications([{ type: 'error', message: `error get Data from ${name}` }]);
+  }, [isError]);
 
   if (isLoading) return <LoadingIndicator />;
-  if (isError) return <div>Error</div>;
 
   return (
     <RecordContext.Provider value={state as RecordContextType<T> | undefined}>

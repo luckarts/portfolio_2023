@@ -2,12 +2,10 @@ import { Helmet } from 'react-helmet';
 import { Button, Typography } from 'src/components';
 import { getProjets, getTags } from 'utils/api';
 import ListTags from './ListTags';
-import { useAdmin, RecordProvider } from 'src/contexts';
+import { RecordProvider, Authenticated } from 'src/contexts';
 import ListProjects from './ListProjects';
 
 const ProjectPage = () => {
-  const { isAdmin } = useAdmin();
-
   return (
     <>
       <Helmet>
@@ -21,15 +19,16 @@ const ProjectPage = () => {
           variante="h1"
           className="text-center title z-10 relative text-white afterTitle animation-FadeUp animation-once"
         >
-          {isAdmin ? ' Edit projets' : 'Mes projets'}
+          <Authenticated adminLabel={'Edit projets'} userLabel={'Mes projets'}></Authenticated>
         </Typography>
+
         <div className="mask_bg"></div>
       </div>
-      {isAdmin && (
+      <Authenticated>
         <Button variante="link" addIcon className="addIcon link" href="/new">
           Ajout d'un nouveau projet
         </Button>
-      )}
+      </Authenticated>
       <RecordProvider name="getTags" callback={() => getTags()}>
         <ListTags />
       </RecordProvider>

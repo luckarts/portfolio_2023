@@ -1,6 +1,7 @@
 import { GetUserProfile } from 'utils/api';
-import { RecordProvider } from 'src/contexts/';
+import { RecordProvider } from '../../contexts';
 import { Usercv } from './UserCV';
+
 const Footer = () => {
   const IconStyle = 'rounded-full w-8 h-auto mx-2';
   return (

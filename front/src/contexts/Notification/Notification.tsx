@@ -20,7 +20,7 @@ export const Notification = () => {
     setNotifications([]);
   };
   const alertStatus = (type: string): AlertStatus => {
-    return type === 'pattern' || type === 'required' ? AlertStatus.Error : AlertStatus.Success;
+    return type === 'pattern' || type === 'required' || type === 'error' ? AlertStatus.Error : AlertStatus.Success;
   };
   return (
     <div className="alert_container">

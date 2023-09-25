@@ -1,6 +1,3 @@
-interface LoadingIndicator {
-  className?: string;
-}
 const LoadingIndicator = ({ className }: LoadingIndicator) => {
   const loader =
     'inline-block h-3 w-3 my-auto mx-1 rounded-md animation-bulging animation-1s animation-ease-in-out transition ease-in-out';
@@ -13,3 +10,7 @@ const LoadingIndicator = ({ className }: LoadingIndicator) => {
   );
 };
 export default LoadingIndicator;
+
+interface LoadingIndicator {
+  className?: string;
+}

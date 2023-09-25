@@ -2,7 +2,6 @@ export { default as Swipeable } from './Swipeable';
 export { default as App } from './App';
 export { default as HomePage } from './HomePage';
 export { default as LoginPage } from './LoginPage';
-export { default as NotFoundPage } from './NotFoundPage/index.tsx';
 export { default as PrivateRoute } from '../components/PrivateRoute';
 export { default as Projets } from './Projets';
 export { default as PublicRoute } from '../components/PublicRoute';

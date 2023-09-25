@@ -1,0 +1,10 @@
+{
+  "/register": "/register",
+  "/login": "/login",
+  "/dashboard": "/dashboard",
+  "/notfound": "/notfound",
+  "/luc_bachelerie": "/luc_bachelerie",
+  "/projectname": "/edit/project/:projectName",
+
+  "/": "/"
+}

@@ -26,6 +26,7 @@ i18n
       useSuspense: false
     }
   });
+
 // Gestionnaire d'erreur pour les traductions manquantes
 
 export default i18n;

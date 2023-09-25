@@ -3,24 +3,45 @@ import useWindowDimensions from 'utils/useWindowDimensions';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 import { Button, LoadingIndicator } from 'src/components';
 import { useStore } from 'contexts/store';
+import CookieService from 'services/cookie.service';
 
 const Preloader = () => {
   const { width } = useWindowDimensions();
   const [hidden, setHidden] = useState(false);
   const nodeRef = useRef(null);
+
   const { setStore } = useStore();
+  const initialPreaload = CookieService.checkCookieExists('preaload');
+  const [preload, setPreload] = useState(initialPreaload);
+
+  useEffect(() => {
+    if (!preload) {
+      CookieService.setCookie('preaload', true, 1800);
+    } else {
+      setPreload(true);
+    }
+    return () => {
+      // CookieService.deleteCookie('preaload');
+    };
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       if (width >= 1024) {
-        //  setStore('tabs_id', 1);
-        //setHidden(true);
+        setStore('tabs_id', 1);
+        setHidden(true);
+        setPreload(true);
       }
     }, 4000);
     return () => clearInterval(timer);
   }, [, setStore, width]);
 
-  return (
+  useEffect(() => {
+    if (!preload) document.body.style.overflowY = 'hidden';
+    else document.body.style.overflowY = 'scroll';
+  }, [preload]);
+
+  return preload == false ? (
     <>
       <div
         ref={nodeRef}
@@ -32,6 +53,7 @@ const Preloader = () => {
           className="flex overflow-y-hidden h-screen relative w-full"
           onClick={() => {
             setStore('tabs_id', 1);
+            setPreload(true);
             setHidden(true);
           }}
         >
@@ -58,7 +80,7 @@ const Preloader = () => {
         </div>
       </div>
     </>
-  );
+  ) : null;
 };
 
 export default Preloader;

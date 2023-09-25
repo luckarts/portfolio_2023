@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
-import { StoreContext } from './StoreContext.ts';
-import { storeReducer } from './reducer.ts';
-import { OnlyChildrenProps } from 'containers/type';
+import { StoreContext } from './StoreContext';
+import { storeReducer } from './reducer';
+import { OnlyChildrenProps } from 'src/type';
 
 export function StoreContextProvider<T>({ children }: OnlyChildrenProps) {
   const [store, dispatch] = useReducer(storeReducer<T>, {});

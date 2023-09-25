@@ -7,50 +7,34 @@
  *
  */
 
-import { useEffect, useState, Suspense } from 'react';
+import { Suspense } from 'react';
 
-import { Helmet } from 'react-helmet';
 //import ReactGA from 'react-ga';
 
 import { Route, Routes, Navigate, BrowserRouter as Router } from 'react-router-dom';
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
+import Navbar from 'src/components/Navbar';
+import Footer from 'src/components/Footer';
 import { publicRoutes } from 'routes/publicRoutes';
 import { privateRoutes } from 'routes/privateRoutes';
 import { useTranslation } from 'react-i18next';
 import LoadingIndicator from 'components/LoadingIndicator';
-import Preloader from 'containers/Home';
-import CookieService from 'services/cookie.service';
+import Preloader from 'containers/Home/';
 import MiddlewareLanguage from './MiddlewareLanguage';
 import { Notification, useNotification } from 'src/contexts';
+
 export default function App() {
   const { t, ready } = useTranslation();
   const { notifications } = useNotification();
-
-  const [isPreloaded, setIsPreloaded] = useState(false);
   //const TRACKING_ID = "UA-XXXXX-X"; / / OUR_TRACKING_ID;
   //ReactGA.initialize(TRACKING_ID);
-  useEffect(() => {
-    if (!CookieService.checkCookieExists('preaload')) {
-      CookieService.setCookie('preaload', true, 1800);
-    } else {
-      // dispatch(setTab(1));
-      setIsPreloaded(true);
-    }
-    return () => {
-      CookieService.deleteCookie('preaload');
-    };
-  }, []);
+
   if (!ready) return <LoadingIndicator className="bg-primary" />;
-  if (!isPreloaded) return <Preloader />;
 
   return (
     <div data-theme="dark">
-      <Helmet titleTemplate="%s - Boileurplate">
-        <meta name="description" content="Truthy CMS" />
-      </Helmet>
       <>
-        <div className="min-h-screen sm:mb-4  relative">
+        <Preloader />
+        <div className="min-h-screen sm:mb-4 relative">
           <Router>
             <MiddlewareLanguage>
               <Suspense fallback={<LoadingIndicator className="bg-primary h-screen" />}>

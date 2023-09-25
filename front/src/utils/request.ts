@@ -1,12 +1,13 @@
 import { statusCodesList } from './constants';
-import axios from 'axios';
-import { IResponse, requestProps } from './type';
+//import axios from 'axios';
+import { requestProps } from './type';
+import axios, { AxiosResponse } from 'axios';
 /**
  * Parses the JSON returned by a network request
  *
  * @param  {object} response A response from a network request
  */
-function parseJSON<T>(response: IResponse<T>): T | null {
+function parseJSON<T>(response: AxiosResponse): T | null {
   if (response?.status === 204 || response?.status === 205) {
     return null;
   }
@@ -21,7 +22,7 @@ function parseJSON<T>(response: IResponse<T>): T | null {
  * @return {object|undefined} Returns either the response, or throws an error
  */
 
-function checkStatus<T>(response: IResponse<T>): IResponse<T> {
+function checkStatus(response: AxiosResponse): AxiosResponse {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -36,9 +37,9 @@ function checkStatus<T>(response: IResponse<T>): IResponse<T> {
  */
 export default function request<T>({ url, method, headers, body }: requestProps): Promise<T | null> {
   return axios({
-    url,
-    method,
-    headers,
+    url: url,
+    method: method,
+    headers: headers,
     data: body
   })
     .then(checkStatus)
@@ -46,5 +47,5 @@ export default function request<T>({ url, method, headers, body }: requestProps)
     .catch((error) => {
       console.error('Erreur lors de la requête :', error);
       throw error;
-    });
+    }) as Promise<T | null>;
 }

@@ -3,6 +3,9 @@ footer > img,
   width: 30vw;
   height: auto;
 }
+footer > img {
+  @apply sm:min-w-300;
+}
 .resumeSvg {
   @apply flex-row-reverse sm:flex-wrap sm:flex-col-reverse;
 }

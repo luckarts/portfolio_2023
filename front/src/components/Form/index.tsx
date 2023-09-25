@@ -26,7 +26,7 @@ export default function Form() {
         )}
         <div className="flex justify-end">
           <button className="btn btn-primary rounded-full mb-4" type="submit">
-            <span> Valider</span>
+            Valider
           </button>
         </div>
       </form>

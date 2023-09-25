@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1695497099584" clover="3.2.0">
+  <project timestamp="1695497099585" name="All files">
+    <metrics statements="217" coveredstatements="108" conditionals="42" coveredconditionals="4" methods="47" coveredmethods="6" elements="306" coveredelements="118" complexity="0" loc="217" ncloc="217" packages="9" files="30" classes="30"/>
+    <package name="jest">
+      <metrics statements="25" coveredstatements="14" conditionals="8" coveredconditionals="2" methods="17" coveredmethods="5"/>
+      <file name="localstorage.js" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/jest/localstorage.js">
+        <metrics statements="25" coveredstatements="14" conditionals="8" coveredconditionals="2" methods="17" coveredmethods="5"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="3" count="8" type="stmt"/>
+        <line num="5" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="8" type="stmt"/>
+        <line num="23" count="8" type="stmt"/>
+        <line num="26" count="8" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="8" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.LoadingIndicator">
+      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/components/LoadingIndicator/index.tsx">
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.contexts">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/index.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.contexts.AdminContext">
+      <metrics statements="28" coveredstatements="13" conditionals="5" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="AdminContext.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/AdminContext/AdminContext.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="AdminContextProvider.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/AdminContext/AdminContextProvider.tsx">
+        <metrics statements="16" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/AdminContext/index.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="useAdmin.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/AdminContext/useAdmin.ts">
+        <metrics statements="7" coveredstatements="3" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.contexts.FormContext">
+      <metrics statements="28" coveredstatements="11" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="FormContext.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/FormContext/FormContext.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="FormProvider.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/FormContext/FormProvider.tsx">
+        <metrics statements="16" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/FormContext/index.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="useCustomForm.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/FormContext/useCustomForm.ts">
+        <metrics statements="7" coveredstatements="3" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.contexts.I18nContext">
+      <metrics statements="21" coveredstatements="12" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="I18nContext.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/I18nContext/I18nContext.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="I18nContextProvider.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/I18nContext/I18nContextProvider.tsx">
+        <metrics statements="9" coveredstatements="4" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/I18nContext/index.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+      </file>
+      <file name="useI18n.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/I18nContext/useI18n.ts">
+        <metrics statements="7" coveredstatements="3" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.contexts.Notification">
+      <metrics statements="37" coveredstatements="18" conditionals="11" coveredconditionals="2" methods="11" coveredmethods="1"/>
+      <file name="Notification.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/Notification/Notification.tsx">
+        <metrics statements="19" coveredstatements="6" conditionals="10" coveredconditionals="2" methods="9" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+      <file name="NotificationContext.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/Notification/NotificationContext.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="NotificationContextProvider.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/Notification/NotificationContextProvider.tsx">
+        <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/Notification/index.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="useContextNotification.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/Notification/useContextNotification.ts">
+        <metrics statements="7" coveredstatements="3" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.contexts.RecordContext">
+      <metrics statements="39" coveredstatements="17" conditionals="12" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="RecordContext.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/RecordContext/RecordContext.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="RecordContextProvider.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/RecordContext/RecordContextProvider.tsx">
+        <metrics statements="16" coveredstatements="6" conditionals="7" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="34" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/RecordContext/index.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="reducer.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/RecordContext/reducer.ts">
+        <metrics statements="7" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="useRecord.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/RecordContext/useRecord.ts">
+        <metrics statements="9" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.contexts.store">
+      <metrics statements="29" coveredstatements="15" conditionals="3" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="StoreContext.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/store/StoreContext.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+      <file name="StoreContextProvider.tsx" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/store/StoreContextProvider.tsx">
+        <metrics statements="6" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/store/index.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="reducer.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/store/reducer.ts">
+        <metrics statements="4" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="useStore.ts" path="/home/luc/Bureau/lastPort/portfolioTs/testPortfolio10_9 (copie)/front/src/contexts/store/useStore.ts">
+        <metrics statements="12" coveredstatements="3" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
