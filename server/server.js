@@ -4,7 +4,15 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import getResize from './helpers/resize';
-import { experienceRoutes, galleryRoutes, projectsRoutes, tagRoutes, userRoutes, userProfiles } from './API';
+import {
+  experienceRoutes,
+  galleryRoutes,
+  projectsRoutes,
+  tagRoutes,
+  userRoutes,
+  userProfiles,
+  TranslationsRoutes
+} from './API';
 import Routes from './API/Routes/routes';
 
 import path from 'path';
@@ -31,7 +39,7 @@ app.use((req, res, next) => {
 migration.connection
   .authenticate()
   .then(() => console.log('database connected...'))
-  .catch(err => console.log(`Error:${err}`));
+  .catch((err) => console.log(`Error:${err}`));
 
 app.use(express.static(path.join(__dirname + '/../build')));
 
@@ -42,6 +50,7 @@ app.use('/api/experiences', experienceRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/user_profile', userProfiles);
 app.use('/api/tags', tagRoutes);
+app.use('/api/translations', TranslationsRoutes);
 
 app.use('/routes', Routes);
 app.use('/thumb/img/:img', getResize);

@@ -4,5 +4,6 @@ import projectsRoutes from './Projects/routes';
 import tagRoutes from './Tag/routes';
 import userRoutes from './User/routes';
 import userProfiles from './UserProfile/routes';
+import TranslationsRoutes from './Translations/routes';
 
-export { experienceRoutes, galleryRoutes, projectsRoutes, tagRoutes, userRoutes, userProfiles };
+export { experienceRoutes, galleryRoutes, projectsRoutes, tagRoutes, userRoutes, userProfiles, TranslationsRoutes };
